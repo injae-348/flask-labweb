@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- My CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="../static/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+        type="text/css" />
+
+    <title>Hello, pybo!</title>
+</head>
+
+<body>
+    <!-- navigation bar-->
+    {% include "nav.html" %}
+
+    <!-- 기본 템플릿 안에 삽입될 내용 Start -->
+    {% block content %}
+    {% endblock %}
+    <!-- 기본 템플릿 안에 삽입될 내용 End -->
+
+
+    <!-- Footer-->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- Footer About Text-->
+                <div class="col-lg-4 mb-3 text-center">
+                    <img src="../static/img/portfolio/logo.png" alt="logo" width="50%">
+                    <p class="lead mb-0">
+                        Hyper Intelligent Media Network Platform(HI-IoP) Lab.
+                        School of Information Communication Engineering
+                        Chonnam National University
+                    </p>
+                </div>
+
+                <!-- Footer Social Icons-->
+                <div class="col-lg-4 mb-3 text-center">
+                    <h4 class="text-uppercase mb-4 pd-1">Content</h4>
+                    <a class="btn btn-outline-light btn-social mx-1" href=""><i class="fab fa-fw fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-light btn-social mx-1" href=""><i class="fab fa-fw fa-twitter"></i></a>
+                    <a class="btn btn-outline-light btn-social mx-1" href=""><i
+                            class="fab fa-fw fa-linkedin-in"></i></a>
+                    <a class="btn btn-outline-light btn-social mx-1" href=""><i class="fab fa-fw fa-dribbble"></i></a>
+                </div>
+                <!-- Footer Location-->
+                <div class="col-lg-4 mb-3">
+                    <h4 class="text-uppercase mb-4 text-center">CONTACT</h4>
+                    <p class="lead mb-0">
+                        김진술 교수(jsworld@jnu.ac.kr)<br>
+                        대한민국 광주광역시 북구 용봉로 전남대학교 공과대학 7호관 802호<br>
+                        전화번호 : +82 62 530 0407
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Copyright Section-->
+    <div class="copyright py-4 text-center text-white">
+        <div class="container"><small>Copyright &copy; 2023 Hyper Intellient Media Network Platform Lab. All Rights
+                Reserved.</small></div>
+    </div>
+
+
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="../static/script.js"></script>
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <!-- * *                               SB Forms JS                               * *-->
+    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+
+
+
+</body>
+
+</html>

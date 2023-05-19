@@ -1,0 +1,214 @@
+<!--
+    contact 페이지는 마지막에 수정이 필요합니다
+    nav 경로랑 이런거 따로 해주기
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="This is an example web" />
+    <meta name="author" content="JIJ" />
+    <title>Web Practice</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="../../static/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+        type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../../static/style.css" rel="stylesheet" />
+</head>
+
+<body id="page-top">
+
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg bg-secondary text-uppercase px-0 py-3" id="mainNav">
+        <div class="container">
+            <div class="a-container">
+                <!--
+                    href="{{url_for('index.mainpage')}}" 로 주소를 넣어서 절대 경로로 사용!
+                -->
+                <a class="navbar-brand text-black" href="{{url_for('index.mainpage')}}">
+                    <img src="../static/img/portfolio/Hi.png" alt="logo" width="25%">
+                </a>
+            </div>
+            <button class="navbar-toggler nav-btn" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false"
+                aria-label="Toggle navigation">Menu
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item mx-0 mx-lg-1">
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded text-black bbb"
+                            href="{{url_for('news.NewsDef', _external=True)}}">NEWS</a>
+                    </li>
+                    <li class="nav-item dropdown mx-0 mx-lg-1">
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded text-black dropdown-toggle bbb"
+                            id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" href="#"
+                            aria-haspopup="true" aria-expanded="false">MEMBERS</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item"
+                                    href="{{url_for('member.MemberProfDef', _external=True)}}">Professor</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <!--
+                                절대 URL이 생성되어 /Members/cur_stu.html로 연결됩니다. _external=True를 추가하면 URL이 외부 URL로 처리되므로 도메인 및 포트 번호가 포함됩니다.
+                            -->
+                            <li><a class="dropdown-item"
+                                    href="{{url_for('member.MemberCurrentDef', _external=True)}}">Current Students</a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item"
+                                    href="{{url_for('member.MemberAlumniDef', _external=True)}}">Alumni</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-black bbb"
+                            href="{{url_for('projects.ProjectDef', _external=True)}}">PROJECTS</a>
+                    </li>
+                    <li class="nav-item mx-0 mx-lg-1 dropdown">
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded text-black dropdown-toggle bbb"
+                            data-bs-toggle="dropdown" href="{{url_for('pub.PubInJournDef', _external=True)}}"
+                            id="navbarDropdownMenuLink2" role="button" aria-expanded="false">PUBLICATIONS</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
+                            <li><a class="dropdown-item"
+                                    href="{{url_for('pub.PubInJournDef', _external=True)}}">International Journals</a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item"
+                                    href="{{url_for('pub.PubInConfDef', _external=True)}}">International Conferences</a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item"
+                                    href="{{url_for('pub.PubInPatenDef', _external=True)}}">International Patents</a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item"
+                                    href="{{url_for('pub.PubDomJournDef', _external=True)}}">Domestic Journals</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item"
+                                    href="{{url_for('pub.PubDomConfDef', _external=True)}}">Domestic Conferences</a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item"
+                                    href="{{url_for('pub.PubDomPatenDef', _external=True)}}">Domestic Patents</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-black bbb"
+                            href="{{url_for('contact.ContactDef', _external=True)}}">CONTACT</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="contact-head">
+        <div class="contact text-white">
+            <div class="py-2 container">
+                <h2>Contact</h2>
+                <p>Hyper Intelligent Media Network Platform(HI-IoP) Lab</p>
+            </div>
+        </div>
+
+        <section class="py-3 my-4 container section-bg">
+            <div class="text-padding div-margin">
+                <div>
+                    <h4><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-balloon" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 9.984C10.403 9.506 12 7.48 12 5a4 4 0 0 0-8 0c0 2.48 1.597 4.506 4 4.984ZM13 5c0 2.837-1.789 5.227-4.52 5.901l.244.487a.25.25 0 1 1-.448.224l-.008-.017c.008.11.02.202.037.29.054.27.161.488.419 1.003.288.578.235 1.15.076 1.629-.157.469-.422.867-.588 1.115l-.004.007a.25.25 0 1 1-.416-.278c.168-.252.4-.6.533-1.003.133-.396.163-.824-.049-1.246l-.013-.028c-.24-.48-.38-.758-.448-1.102a3.177 3.177 0 0 1-.052-.45l-.04.08a.25.25 0 1 1-.447-.224l.244-.487C4.789 10.227 3 7.837 3 5a5 5 0 0 1 10 0Zm-6.938-.495a2.003 2.003 0 0 1 1.443-1.443C7.773 2.994 8 2.776 8 2.5c0-.276-.226-.504-.498-.459a3.003 3.003 0 0 0-2.46 2.461c-.046.272.182.498.458.498s.494-.227.562-.495Z" />
+                        </svg> Professor</h4>
+                    <p>
+                        김진술 교수
+                    </p>
+                </div>
+                <div>
+                    <h4><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-balloon" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 9.984C10.403 9.506 12 7.48 12 5a4 4 0 0 0-8 0c0 2.48 1.597 4.506 4 4.984ZM13 5c0 2.837-1.789 5.227-4.52 5.901l.244.487a.25.25 0 1 1-.448.224l-.008-.017c.008.11.02.202.037.29.054.27.161.488.419 1.003.288.578.235 1.15.076 1.629-.157.469-.422.867-.588 1.115l-.004.007a.25.25 0 1 1-.416-.278c.168-.252.4-.6.533-1.003.133-.396.163-.824-.049-1.246l-.013-.028c-.24-.48-.38-.758-.448-1.102a3.177 3.177 0 0 1-.052-.45l-.04.08a.25.25 0 1 1-.447-.224l.244-.487C4.789 10.227 3 7.837 3 5a5 5 0 0 1 10 0Zm-6.938-.495a2.003 2.003 0 0 1 1.443-1.443C7.773 2.994 8 2.776 8 2.5c0-.276-.226-.504-.498-.459a3.003 3.003 0 0 0-2.46 2.461c-.046.272.182.498.458.498s.494-.227.562-.495Z" />
+                        </svg> Address</h4>
+                    <p>
+                        Chonnam National University College of Technology, Building 7, Room 802, Yongbong-ro, Buk-gu,
+                        Gwangju, South Korea<br>
+                        대한민국 광주광역시 북구 용봉로 전남대학교 공과대학 7호관 802호
+                    </p>
+                </div>
+                <div>
+                    <h4><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-balloon" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 9.984C10.403 9.506 12 7.48 12 5a4 4 0 0 0-8 0c0 2.48 1.597 4.506 4 4.984ZM13 5c0 2.837-1.789 5.227-4.52 5.901l.244.487a.25.25 0 1 1-.448.224l-.008-.017c.008.11.02.202.037.29.054.27.161.488.419 1.003.288.578.235 1.15.076 1.629-.157.469-.422.867-.588 1.115l-.004.007a.25.25 0 1 1-.416-.278c.168-.252.4-.6.533-1.003.133-.396.163-.824-.049-1.246l-.013-.028c-.24-.48-.38-.758-.448-1.102a3.177 3.177 0 0 1-.052-.45l-.04.08a.25.25 0 1 1-.447-.224l.244-.487C4.789 10.227 3 7.837 3 5a5 5 0 0 1 10 0Zm-6.938-.495a2.003 2.003 0 0 1 1.443-1.443C7.773 2.994 8 2.776 8 2.5c0-.276-.226-.504-.498-.459a3.003 3.003 0 0 0-2.46 2.461c-.046.272.182.498.458.498s.494-.227.562-.495Z" />
+                        </svg> Phone</h4>
+                    <p>
+                        +82 62 530 0407
+                    </p>
+                </div>
+                <div>
+
+                    <h4><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-balloon" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 9.984C10.403 9.506 12 7.48 12 5a4 4 0 0 0-8 0c0 2.48 1.597 4.506 4 4.984ZM13 5c0 2.837-1.789 5.227-4.52 5.901l.244.487a.25.25 0 1 1-.448.224l-.008-.017c.008.11.02.202.037.29.054.27.161.488.419 1.003.288.578.235 1.15.076 1.629-.157.469-.422.867-.588 1.115l-.004.007a.25.25 0 1 1-.416-.278c.168-.252.4-.6.533-1.003.133-.396.163-.824-.049-1.246l-.013-.028c-.24-.48-.38-.758-.448-1.102a3.177 3.177 0 0 1-.052-.45l-.04.08a.25.25 0 1 1-.447-.224l.244-.487C4.789 10.227 3 7.837 3 5a5 5 0 0 1 10 0Zm-6.938-.495a2.003 2.003 0 0 1 1.443-1.443C7.773 2.994 8 2.776 8 2.5c0-.276-.226-.504-.498-.459a3.003 3.003 0 0 0-2.46 2.461c-.046.272.182.498.458.498s.494-.227.562-.495Z" />
+                        </svg> Email</h4>
+                    <p>
+                        jsworld@jnu.ac.kr
+                    </p>
+                </div>
+                <div>
+                    <h4><svg xmlns="http://www.w3.org/2000/svg" width="27" height="25" fill="currentColor"
+                            class="bi bi-house-heart" viewBox="0 0 16 16">
+                            <path d="M8 6.982C9.664 5.309 13.825 8.236 8 12 2.175 8.236 6.336 5.309 8 6.982Z" />
+                            <path
+                                d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.707L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.646a.5.5 0 0 0 .708-.707L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z" />
+                        </svg> MAP </h4>
+                </div>
+            </div>
+
+            <div class="wrap-iframe">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3261.137903017528!2d126.90554416118724!3d35.178115291499516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x35718d42165928eb%3A0x3cea2b4d3199e090!2z7KCE64Ko64yA7ZWZ6rWQIOyGjO2UhO2KuOybqOyWtOqzte2VmeqzvA!5e0!3m2!1sko!2skr!4v1679626778180!5m2!1sko!2skr"
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- margin이 벗어나면 컨텐츠가 날아가는구나 -->
+
+    <!-- Copyright Section-->
+    <div class="copyright py-4 text-center text-white">
+        <div class="container"><small>Copyright &copy; 2023 Hyper Intellient Media Network Platform Lab. All Rights
+                Reserved.</small></div>
+    </div>
+
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="../../static/script.js"></script>
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <!-- * *                               SB Forms JS                               * *-->
+    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- Masthead-->
+<header class="masthead1 bg-publication text-white text-center">
+    <div class="container d-flex align-items-center flex-column">
+
+        <!-- Masthead Heading-->
+        <!-- 경로 넣어주기... 각 페이지에 맞게끔 -->
+        <h1 class="masthead-heading1 text-uppercase mb-0">International Patents</h1>
+        <!-- Icon Divider-->
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+
+    </div>
+</header>
+<section class="py-5 text-center container d-inline">
+    <!--list group-->
+    {% include 'pub_list_group.html' %}
+
+    <div class="container mg-top30px">
+        <h1 class="text-left border-bottom">International Patents</h1>
+        <div class="table-box">
+
+            <table class="table table-hover overflow-scroll align-middle table-responsive mytable">
+                <thead>
+                    <tr class="col-md">
+                        <th>Date</th>
+                        <th>Title</th>
+                        <th>Authors</th>
+                        <th>Read more</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if publicationsList %}
+                    {% for publication in publicationsList %}
+                    {% if publication.category=="International Patents" %}
+                    <tr>
+                        <td>{{publication.date}}</td>
+                        <td>{{publication.title}}</td>
+                        <td>{{publication.author}}</td>
+                        <td><a class="list-group-item align-items-center" href="{{publication.view}}">View</a></td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

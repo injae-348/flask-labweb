@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- Masthead-->
+<header class="masthead1 bg-members text-white text-center">
+    <div class="container d-flex align-items-center flex-column">
+
+        <!-- Masthead Heading-->
+        <h1 class="masthead-heading1 text-uppercase mb-0">Current Students</h1>
+        <!-- Icon Divider-->
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- Masthead Subheading-->
+
+    </div>
+</header>
+
+<section class="py-5 text-center container">
+
+    <div class="row g-3">
+        <div class="text-left">
+            <h3>Ph.D.</h3>
+        </div>
+        {% if memberCurrentList %}
+        {% for member in memberCurrentList %}
+        {% if member.degree=="Doctor's Degree" %}
+        <div class="col-lg-3 col-md-6 col-sm-6 no-trans">
+            <div class="card" style="width: 13rem;">
+                <img src="{{member.image_path}}" class="card-img-top" alt="people">
+                <div class="card-body bg-e5e5e5">
+                    <p class="card-text">
+                        {{member.kname}}<br>{{member.ename}}<br><small>{{member.degree}}<br>{{member.email}}</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+    </div>
+
+    <div class="row pt-5 g-3">
+        <div class="text-left">
+            <h3>M.S.</h3>
+        </div>
+        {% if memberCurrentList %}
+        {% for member in memberCurrentList %}
+        {% if member.degree=="Master's Degree" %}
+        <div class="col-lg-3 col-md-6 col-sm-6 no-trans">
+            <div class="card" style="width: 13rem;">
+                <img src="{{member.image_path}}" class="card-img-top" alt="people">
+                <div class="card-body bg-e5e5e5">
+                    <p class="card-text">
+                        {{member.kname}}<br>{{member.ename}}<br><small>{{member.degree}}<br>{{member.email}}</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+    </div>
+
+    <div class="row pt-5 g-3">
+        <div class="text-left">
+            <h3>Undergraduate</h3>
+        </div>
+        {% if memberCurrentList %}
+        {% for member in memberCurrentList %}
+        {% if member.degree=="Undergraduate" %}
+        <div class="col-lg-3 col-md-6 col-sm-6 no-trans">
+            <div class="card" style="width: 13rem;">
+                <img src="{{member.image_path}}" class="card-img-top" alt="people">
+                <div class="card-body bg-e5e5e5">
+                    <p class="card-text">
+                        {{member.kname}}<br>{{member.ename}}<br><small>{{member.degree}}<br>{{member.email}}</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+    </div>
+
+</section>
+{% endblock %}

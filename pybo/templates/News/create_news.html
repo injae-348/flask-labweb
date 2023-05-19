@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- Masthead-->
+<header class="masthead1 bg-news text-white text-center">
+    <div class="container d-flex align-items-center flex-column">
+
+        <!-- Masthead Heading-->
+        <h1 class="masthead-heading1 text-uppercase mb-0">News</h1>
+        <!-- Icon Divider-->
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+
+    </div>
+</header>
+<div class="container">
+
+    <!-- 폼 작성 -->
+    <form method="POST" enctype="multipart/form-data" action="{{ url_for('news.create_news') }}">
+        <div class="mb-3">
+            <label for="activity_date" class="form-label">Activity Date</label>
+            <input type="text" class="form-control" id="activity_date" name="activity_date" required>
+        </div>
+        <div class="mb-3">
+            <label for="activity" class="form-label">Activity</label>
+            <textarea class="form-control" id="activity" name="activity" rows="3" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="content" class="form-label">Content</label>
+            <textarea class="form-control" id="content" name="content" rows="5"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="images" class="form-label">Images</label>
+            <input type="file" class="form-control" id="images" name="images[]" multiple accept="image/*">
+        </div>
+        <div id="file-inputs"></div>
+        <button type="button" id="add-file-input" class="btn btn-secondary">Add more files</button>
+        
+        <button type="submit" class="btn btn-secondary">Submit</button>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#add-file-input').click(function() {
+        var newInput = $('<div class="mb-3">' +
+                            '<label for="images" class="form-label">Images</label>' +
+                            '<input type="file" class="form-control" name="images[]" accept="image/*">' +
+                        '</div>');
+        $('#file-inputs').append(newInput);
+    });
+});
+</script>
+
+{% endblock %}

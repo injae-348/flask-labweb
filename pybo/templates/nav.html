@@ -1,0 +1,80 @@
+<!-- navigation bar-->
+<nav class="navbar navbar-expand-lg bg-secondary text-uppercase px-0 py-3" id="mainNav">
+    <div class="container">
+        <div class="a-container">
+            <!--
+                href="{{url_for('index.mainpage')}}" 로 주소를 넣어서 절대 경로로 사용!
+            -->
+            <a class="navbar-brand text-black" href="{{url_for('index.mainpage')}}">
+                <img src="../static/img/portfolio/Hi.png" alt="logo" width="25%">
+            </a>
+        </div>
+        <button class="navbar-toggler nav-btn" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false"
+            aria-label="Toggle navigation">Menu
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item mx-0 mx-lg-1">
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded text-black bbb" href="{{url_for('news.NewsDef', _external=True)}}">NEWS</a>
+                </li>
+                <li class="nav-item dropdown mx-0 mx-lg-1">
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded text-black dropdown-toggle bbb"
+                        id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" href="#"
+                        aria-haspopup="true" aria-expanded="false">MEMBERS</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="{{url_for('member.MemberProfDef', _external=True)}}">Professor</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <!--
+                            절대 URL이 생성되어 /Members/cur_stu.html로 연결됩니다. _external=True를 추가하면 URL이 외부 URL로 처리되므로 도메인 및 포트 번호가 포함됩니다.
+                        -->
+                        <li><a class="dropdown-item"
+                                href="{{url_for('member.MemberCurrentDef', _external=True)}}">Current Students</a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="{{url_for('member.MemberAlumniDef', _external=True)}}">Alumni</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-black bbb"
+                        href="{{url_for('projects.ProjectDef', _external=True)}}">PROJECTS</a>
+                </li>
+                <li class="nav-item mx-0 mx-lg-1 dropdown">
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded text-black dropdown-toggle bbb"
+                        data-bs-toggle="dropdown" href="{{url_for('pub.PubInJournDef', _external=True)}}" id="navbarDropdownMenuLink2"
+                        role="button" aria-expanded="false">PUBLICATIONS</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
+                        <li><a class="dropdown-item" href="{{url_for('pub.PubInJournDef', _external=True)}}">International Journals</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="{{url_for('pub.PubInConfDef', _external=True)}}">International Conferences</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="{{url_for('pub.PubInPatenDef', _external=True)}}">International Patents</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="{{url_for('pub.PubDomJournDef', _external=True)}}">Domestic Journals</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="{{url_for('pub.PubDomConfDef', _external=True)}}">Domestic Conferences</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="{{url_for('pub.PubDomPatenDef', _external=True)}}">Domestic Patents</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-black bbb"
+                        href="{{url_for('contact.ContactDef', _external=True)}}">CONTACT</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- Masthead-->
+{% include 'pub_masthead.html' %}
+
+<section class="py-5 text-center container d-inline">
+
+    <!--list group-->
+    {% include 'pub_list_group.html' %}
+
+
+    <div class="container mg-top30px">
+        <h1 class="text-left border-bottom">{{pub.category}}</h1>
+        <div class="table-box">
+            <table class="table table-hover overflow-scroll align-middle table-responsive mytable">
+                <thead>
+                    <tr class="col-md">
+                        <th>Date</th>
+                        <th>Title</th>
+                        <th>Authors</th>
+                        <th>Read more</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if publicationsList %}
+                    {% for publication in publicationsList %}
+                    {% if publication.category=="Domestic Conferences"}
+                    <tr>
+                        <td>publication.date</td>
+                        <td>publication.title</td>
+                        <td>publication.author</td>
+                        <td><a class="list-group-item align-items-center" href="{{publication.view}}">View</a></td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>
+{% endblock %}
