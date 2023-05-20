@@ -1,8 +1,6 @@
 from flask import Blueprint, url_for
 from werkzeug.utils import redirect
 
-from pybo.models import MemberCurrent, MemberAlumni
-
 bp = Blueprint('main',__name__,url_prefix='/')
 
 @bp.route('/hello')

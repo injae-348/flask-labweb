@@ -12,9 +12,12 @@
             <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
             <div class="divider-custom-line"></div>
         </div>
-
     </div>
 </header>
+
+<div class="btn-wrap">
+    <button class="button-19" role="button"><a href="{{url_for('projects.create_project')}}">Add Projects</a></button>
+</div>
 
 <section class="py-5 text-center container">
 
@@ -30,7 +33,7 @@
                 <div class="col">
                     <div class="card shadow-sm">
                         <div class="imgcontainer">
-                            <img src="{{project.image_path}}" alt="img" width="100%" height="225px">
+                            <img src="{{ url_for('static',filename='img/portfolio/' + project.image_path)}}" alt="img" width="100%" height="225px">
                         </div>
                         <div class="card-body">
                             <p class="card-text">
@@ -69,7 +72,7 @@
                 <div class="col">
                     <div class="card shadow-sm">
                         <div class="imgcontainer">
-                            <img src="{{project.image_path}}" alt="img" width="100%" height="225px">
+                            <img src="{{ url_for('static',filename='img/portfolio/' + project.image_path)}}" alt="img" width="100%" height="225px">
                         </div>
                         <div class="card-body">
                             <p class="card-text">

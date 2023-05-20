@@ -16,8 +16,9 @@
 
     </div>
 </header>
-<div class="container">
 
+<div class="container mb-3">
+    <h1>Add News</h1>
     <!-- 폼 작성 -->
     <form method="POST" enctype="multipart/form-data" action="{{ url_for('news.create_news') }}">
         <div class="mb-3">
@@ -32,26 +33,35 @@
             <label for="content" class="form-label">Content</label>
             <textarea class="form-control" id="content" name="content" rows="5"></textarea>
         </div>
-        <div class="mb-3">
-            <label for="images" class="form-label">Images</label>
-            <input type="file" class="form-control" id="images" name="images[]" multiple accept="image/*">
-        </div>
-        <div id="file-inputs"></div>
-        <button type="button" id="add-file-input" class="btn btn-secondary">Add more files</button>
         
-        <button type="submit" class="btn btn-secondary">Submit</button>
+        <div id="file-inputs">
+            <div class="mb-3">
+                <label for="images" class="form-label">Images</label>
+                <input type="file" class="form-control" name="images[]" accept="image/*">
+            </div>
+        </div>
+        <button type="button" id="add-file-input" class="btn btn-secondary button-19">Add more files</button>
+        <button type="button" id="delete-file-input" class="btn btn-secondary button-19">Delete files</button>
+        
+        <button type="submit" class="btn btn-secondary button-19">Submit</button>
     </form>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function() {
-    $('#add-file-input').click(function() {
+    $('#add-file-input').off.click(function() {
         var newInput = $('<div class="mb-3">' +
                             '<label for="images" class="form-label">Images</label>' +
                             '<input type="file" class="form-control" name="images[]" accept="image/*">' +
                         '</div>');
         $('#file-inputs').append(newInput);
+    });
+});
+
+$(document).ready(function(){
+    $('#delete-file-input').click(function(){
+        $('#file-inputs .mb-3:last-child').remove();
     });
 });
 </script>

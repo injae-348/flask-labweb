@@ -11,6 +11,6 @@ def save_image(file):
         file_path = os.path.join(upload_dir, filename)
         # 파일 저장
         file.save(file_path)
-        file_path = file_path[5:]
+        file_path = filename
 
         return file_path

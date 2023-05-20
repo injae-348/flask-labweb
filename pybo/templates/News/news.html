@@ -15,6 +15,9 @@
 
     </div>
 </header>
+<div class="btn-wrap">
+    <button class="button-19" role="button"><a href="{{url_for('news.create_news')}}">Add News</a></button>
+</div>
 
 <section class="py-5 text-center container d-inline">
     <div class="container">
@@ -28,22 +31,18 @@
                 {% if newsList %}
                 {% for news in newsList %}
                 <tr>
-
                     <td data-th="Date">
                         {{news.activity_date}}
                     </td>
                     <td data-th="LAB Activity">
                         {{news.activity}}
                     </td>
-
                     <td data-th="View">
-
                         <!-- Button trigger modal{{id}} -->
                         <button type="button" class="btn modal-btn" data-bs-toggle="modal"
                             data-bs-target="#exampleModal{{news.id}}">
                             read more
                         </button>
-
                         <!--modal{{id}}-->
                         <div class="modal fade" id="exampleModal{{news.id}}" tabindex="-1"
                             aria-labelledby="exampleModalLabel{{news.id}}" aria-hidden="true">
@@ -60,7 +59,7 @@
                                             <!-- img는 img만 담아둔 관계형 db 하나더 생성해서 for문으로 구성해주기!!-->
                                             {% if news.images %}
                                             {% for image in news.images %}
-                                            <img src="{{image.image_path}}" alt="activity picture" class="img-fluid">
+                                            <img src="{{url_for('static',filename='img/portfolio/' + image.image_path)}}" alt="activity picture" class="img-fluid">
                                             {% endfor %}
                                             {% endif %}
                                         </div>
@@ -74,15 +73,10 @@
                         </div>
                     </td>
                 </tr>
-
                 {% endfor %}
                 {% endif %}
             </tbody>
-
         </table>
     </div>
-
-    <button><a href="{{url_for('news.create_news')}}">hello</a></button>
 </section>
-
 {% endblock %}

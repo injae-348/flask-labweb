@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- Masthead-->
+<header class="masthead1 bg-primary2 text-white text-center">
+    <div class="container d-flex align-items-center flex-column">
+
+        <!-- Masthead Heading-->
+        <h1 class="masthead-heading1 text-uppercase mb-0">Project</h1>
+        <!-- Icon Divider-->
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+    </div>
+</header>
+<div class="container mb-3">
+    <h1>Create Project</h1>
+    <form method="POST" enctype="multipart/form-data" action="{{ url_for('projects.create_project') }}">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" name="title" required>
+        </div>
+        <div class="mb-3">
+            <label for="duration" class="form-label">Duration</label>
+            <input type="text" class="form-control" id="duration" name="duration" required>
+        </div>
+        <div class="mb-3">
+            <label for="Agency" class="form-label">Agency</label>
+            <input type="text" class="form-control" id="Agency" name="Agency" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Period</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="period" id="recent" value="recent" required>
+                <label class="form-check-label" for="recent">
+                    Recent
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="period" id="past" value="past" required>
+                <label class="form-check-label" for="past">
+                    Past
+                </label>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="image" class="form-label">Image</label>
+            <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+</div>
+
+{% endblock %}

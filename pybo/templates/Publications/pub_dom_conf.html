@@ -16,7 +16,9 @@
 
     </div>
 </header>
-
+<div class="btn-wrap">
+    <button class="button-19" role="button"><a href="{{url_for('pub.create_publication')}}">Add Publications</a></button>
+</div>
 <section class="py-5 text-center container d-inline">
 
     <!--list group-->
@@ -43,7 +45,7 @@
                         <td>{{publication.date}}</td>
                         <td>{{publication.title}}</td>
                         <td>{{publication.author}}</td>
-                        <td><a class="list-group-item align-items-center" href="{{publication.view}}">View</a></td>
+                        <td><a class="list-group-item align-items-center" href="{{publication.read_more}}">View</a></td>
                     </tr>
                     {% endif %}
                     {% endfor %}

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- Masthead-->
+<header class="masthead1 bg-members text-white text-center">
+    <div class="container d-flex align-items-center flex-column">
+
+        <!-- Masthead Heading-->
+        <h1 class="masthead-heading1 text-uppercase mb-0">Alumni</h1>
+        <!-- Icon Divider-->
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- Masthead Subheading-->
+
+    </div>
+</header>
+
+<section class="py-5 text-center container">
+    <div class="row">
+        <div class="col-lg-6 mx-auto">
+            <h1 class="display-4">Add Current Student</h1>
+            <form method="POST" enctype="multipart/form-data" action="{{ url_for('member.create_current_student') }}">
+                <div class="mb-3">
+                    <label for="kname" class="form-label">Korean Name</label>
+                    <input type="text" class="form-control" id="kname" name="kname" required>
+                </div>
+                <div class="mb-3">
+                    <label for="ename" class="form-label">English Name</label>
+                    <input type="text" class="form-control" id="ename" name="ename" required>
+                </div>
+                <div class="mb-3">
+                    <label for="degree" class="form-label">Degree</label>
+                    <select class="form-select" id="degree" name="degree" required>
+                        <option value="Doctor's Degree">Doctor's Degree</option>
+                        <option value="Master's Degree">Master's Degree</option>
+                        <option value="Undergraduate">Undergraduate</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image</label>
+                    <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}
