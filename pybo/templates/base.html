@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="../static/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="{{url_for('static', filename='favicon.ico')}}" />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
@@ -76,15 +76,16 @@
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
-    <script src="../static/script.js"></script>
+    <script src="{{url_for('static',filename='script.js')}}"></script>
     <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
     <!-- * *                               SB Forms JS                               * *-->
     <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
     <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 
-
-
+    <!-- 삭제 할 건지 물어볼 js -->
+    {% block script %}
+    {% endblock %}
 </body>
 
 </html>

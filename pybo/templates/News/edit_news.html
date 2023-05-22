@@ -1,3 +1,4 @@
+<!-- this page is edit & delete page-->
 {% extends 'base.html' %}
 {% block content %}
 
@@ -6,7 +7,7 @@
     <div class="container d-flex align-items-center flex-column">
 
         <!-- Masthead Heading-->
-        <h1 class="masthead-heading1 text-uppercase mb-0">Create News</h1>
+        <h1 class="masthead-heading1 text-uppercase mb-0">Edit News</h1>
         <!-- Icon Divider-->
         <div class="divider-custom divider-light">
             <div class="divider-custom-line"></div>
@@ -18,40 +19,46 @@
 </header>
 
 <div class="container mb-3">
-    <h1>Create News</h1>
+    <h1>Edit News</h1>
     <!-- 폼 작성 -->
-    <form method="POST" enctype="multipart/form-data" action="{{ url_for('news.create_news') }}">
+    <form method="POST" enctype="multipart/form-data" action="{{ url_for('news.modify', news_id=news.id) }}">
         <div class="mb-3">
             <label for="activity_date" class="form-label">Activity Date</label>
-            <input type="text" class="form-control" id="activity_date" name="activity_date" required>
+            <input type="text" class="form-control" id="activity_date" name="activity_date" value="{{news.activity_date}}" required>
         </div>
         <div class="mb-3">
             <label for="activity" class="form-label">Activity</label>
-            <textarea class="form-control" id="activity" name="activity" rows="3" required></textarea>
+            <textarea class="form-control" id="activity" name="activity" rows="3" required>{{news.activity}}</textarea>
         </div>
         <div class="mb-3">
             <label for="content" class="form-label">Content</label>
-            <textarea class="form-control" id="content" name="content" rows="5"></textarea>
+            <textarea class="form-control" id="content" name="content" rows="5">{{news.content}}</textarea>
         </div>
         
         <div id="file-inputs">
             <div class="mb-3">
+                {% if news.images %}
+                {% for img in news.images %}
                 <label for="images" class="form-label">Images</label>
                 <input type="file" class="form-control" name="images[]" accept="image/*">
+                {% endfor %}
+                {% endif %}
             </div>
         </div>
         <button type="button" id="add-file-input" class="btn btn-secondary button-19">Add more files</button>
         <button type="button" id="delete-file-input" class="btn btn-secondary button-19">Delete files</button>
         
-        <button type="submit" class="btn btn-secondary button-19">Submit</button>
+        <button type="submit" class="btn btn-secondary button-19">Save</button>
+
+        <a href="javascript:void(0)" class="delete btn btn-sm button-19" data-uri="{{url_for('news.delete',news_id=news.id)}}">delete</a>
+
     </form>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    // 이해가 안가네 왜 여기서는 .off를 써야 작동하고 edit에서는 .off()를 써야 정상작동하는지..
 $(document).ready(function() {
-    $('#add-file-input').off.click(function() {
+    $('#add-file-input').off().click(function() {
         var newInput = $('<div class="mb-3">' +
                             '<label for="images" class="form-label">Images</label>' +
                             '<input type="file" class="form-control" name="images[]" accept="image/*">' +
@@ -67,4 +74,16 @@ $(document).ready(function(){
 });
 </script>
 
+{% endblock %}
+{% block script %}
+<script type='text/javascript'>
+const delete_elements = document.getElementsByClassName("delete");
+Array.from(delete_elements).forEach(function(element) {
+    element.addEventListener('click', function() {
+        if(confirm("정말로 삭제하시겠습니까?")) {
+            location.href = this.dataset.uri;
+        };
+    });
+});
+</script>
 {% endblock %}
