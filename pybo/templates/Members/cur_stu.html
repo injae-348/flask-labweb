@@ -30,7 +30,10 @@
         {% if member.degree=="Doctor's Degree" and member.image_path%}
         <div class="col-lg-3 col-md-6 col-sm-6 no-trans">
             <div class="card" style="width: 13rem;">
-                <img src="{{url_for('static', filename='img/portfolio/' + member.image_path)}}" class="card-img-top" alt="people">
+                {% if member.folder and member.image_path %}
+                <img src="{{ url_for('static', filename='uploads/' + member.folder + '/' + member.image_path) }}"
+                    class="card-img-top" alt="people">
+                {% endif %}
                 <div class="card-body bg-e5e5e5">
                     <p class="card-text">
                         {{member.kname}}<br>{{member.ename}}<br><small>{{member.degree}}<br>{{member.email}}</small>
@@ -52,7 +55,10 @@
         {% if member.degree=="Master's Degree" and member.image_path %}
         <div class="col-lg-3 col-md-6 col-sm-6 no-trans">
             <div class="card" style="width: 13rem;">
-                <img src="{{url_for('static',filename='img/portfolio/' + member.image_path)}}" class="card-img-top" alt="people">
+                {% if member.folder and member.image_path %}
+                <img src="{{ url_for('static', filename='uploads/' + member.folder + '/' + member.image_path) }}"
+                    class="card-img-top" alt="people">
+                {% endif %}
                 <div class="card-body bg-e5e5e5">
                     <p class="card-text">
                         {{member.kname}}<br>{{member.ename}}<br><small>{{member.degree}}<br>{{member.email}}</small>
@@ -74,7 +80,10 @@
         {% if member.degree=="Undergraduate" and member.image_path %}
         <div class="col-lg-3 col-md-6 col-sm-6 no-trans">
             <div class="card" style="width: 13rem;">
-                <img src="{{url_for('static',filename='img/portfolio/' + member.image_path)}}" class="card-img-top" alt="people">
+                {% if member.folder and member.image_path %}
+                <img src="{{ url_for('static', filename='uploads/' + member.folder + '/' + member.image_path) }}"
+                    class="card-img-top" alt="people">
+                {% endif %}
                 <div class="card-body bg-e5e5e5">
                     <p class="card-text">
                         {{member.kname}}<br>{{member.ename}}<br><small>{{member.degree}}<br>{{member.email}}</small>

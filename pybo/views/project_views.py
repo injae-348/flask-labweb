@@ -6,6 +6,7 @@ from pybo.models import Projects
 from pybo import db
 
 from pybo.utils import save_image
+from pybo.views.auth_views import login_required
 
 bp = Blueprint('projects',__name__,url_prefix='')
 
@@ -15,6 +16,7 @@ def ProjectDef():
     return render_template('Projects/project.html',projectsList=projectsList)
 
 @bp.route('/Projects/create', methods=['GET','POST'])
+@login_required
 def create_project():
     if request.method == 'POST':
         title = request.form['title']
@@ -24,9 +26,9 @@ def create_project():
         period = request.form['period']
         
         file = request.files['image']
-        file_path = save_image(file)
+        file_path = save_image(file,'projects')
         
-        new_proj = Projects(title=title,duration=duration,Agency=Agency,image_path=file_path,period=period,create_date=create_date)
+        new_proj = Projects(title=title,duration=duration,Agency=Agency,image_path=file_path,period=period,folder='projects',create_date=create_date)
         db.session.add(new_proj)
         db.session.commit()
 

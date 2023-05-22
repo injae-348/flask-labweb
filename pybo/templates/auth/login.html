@@ -1,0 +1,36 @@
+{% extends "base.html"%}
+{% block content %}
+
+
+<div class="container mb-3">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="login-css">
+        <ul class="flash-messages">
+            {% for message in messages %}
+            <li class="flash-message">alert : {{ message }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    {% endwith %}
+    <h5 class="my-3 border-bottom pb-2">로그인</h5>
+    <form method="post">
+
+        <div class="mb-3">
+            <label for="username">사용자 이름</label>
+            <input type="text" class="form-control" name="username" id="username" value="">
+        </div>
+        <div class="mb-3">
+            <label for="password">비밀번호</label>
+            <input type="password" class="form-control" name="password" id="password" value="">
+        </div>
+        <button type="submit" class="btn btn-primary">로그인</button>
+    </form>
+
+
+
+</div>
+
+
+{% endblock %}

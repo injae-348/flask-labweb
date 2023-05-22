@@ -1,4 +1,12 @@
 from pybo import db
+
+class RootUser(db.Model):
+    id = db.Column(db.Integer,primary_key=True)
+    username = db.Column(db.String(15),unique=True,nullable=False)
+    password = db.Column(db.String(20),nullable=False)
+
+
+
 #---------------------------------------------------------------
 # index 부분도 db로 만들어주기
 
@@ -21,6 +29,10 @@ class MemberCurrent(db.Model):
     create_date = db.Column(db.DateTime(), nullable=False)
     # img file
     image_path = db.Column(db.String(255),nullable=True)
+    # folder
+    folder = db.Column(db.String(30),nullable=True)
+    # modify date
+    modify_date = db.Column(db.DateTime(),nullable=True)
 
 
 # MEMBERS -> Alumni inform
@@ -38,6 +50,10 @@ class MemberAlumni(db.Model):
     create_date = db.Column(db.DateTime(), nullable=False)
     # img file
     image_path = db.Column(db.String(255),nullable=True)
+    # folder
+    folder = db.Column(db.String(30),nullable=True)
+    # modify date
+    modify_date = db.Column(db.DateTime(),nullable=True)
 
 # MEMBERS -> Professor inform
 class Professor(db.Model):
@@ -62,6 +78,13 @@ class Professor(db.Model):
     career = db.relationship('Career',backref='professor',lazy=True)
     # Research pages 를 가져올 변수
     research = db.relationship('ResearchPage',backref='professor',lazy=True)
+    # img file
+    image_path = db.Column(db.String(255),nullable=True)
+    # folder
+    folder = db.Column(db.String(30),nullable=True)
+    # modify date
+    modify_date = db.Column(db.DateTime(),nullable=True)
+
 
 class Education(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -107,6 +130,8 @@ class News(db.Model):
     create_date = db.Column(db.DateTime(), nullable=False)
     # images 관계 맺어주기
     images = db.relationship('NewsImg',backref='news',lazy=True)
+    # modify date
+    modify_date = db.Column(db.DateTime(),nullable=True)
     
 
 # NEWS img를 저장할 클래스
@@ -116,6 +141,8 @@ class NewsImg(db.Model):
     news_id = db.Column(db.Integer,db.ForeignKey('news.id'),nullable=False)
     # news_img_path
     image_path = db.Column(db.String(255),nullable=False)
+    # folder
+    folder = db.Column(db.String(30),nullable=False)
 
 
 #---------------------------------------------------------------
@@ -133,6 +160,12 @@ class Projects(db.Model):
     period = db.Column(db.String(20),nullable=False)
     # create_date
     create_date = db.Column(db.DateTime(), nullable=False)
+    # img file
+    image_path = db.Column(db.String(255),nullable=True)
+    # folder
+    folder = db.Column(db.String(30),nullable=True)
+    # modify date
+    modify_date = db.Column(db.DateTime(),nullable=True)
 
 #---------------------------------------------------------------
 # PUBLICATIONS -> 한번에 다하고 category에 따라서 IC, IJ IP등 나눠주기
@@ -150,6 +183,8 @@ class Publications(db.Model):
     category = db.Column(db.String(30),nullable=False)
     # create_date
     create_date = db.Column(db.DateTime(),nullable=False)
+    # modify date
+    modify_date = db.Column(db.DateTime(),nullable=True)
 
 
 #---------------------------------------------------------------

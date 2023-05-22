@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="btn-wrap">
+        <button class="button-19" role="button"><a href="{{url_for('member.create_alumni')}}">Add Members</a></button>
+    </div>
+
+    <div class="btn-wrap">
+        <button class="button-19" role="button"><a href="{{url_for('member.create_current_student')}}">Add Members</a></button>
+    </div>
+
+    <div class="btn-wrap">
+        <button class="button-19" role="button"><a href="{{url_for('news.create_news')}}">Add News</a></button>
+    </div>
+
+    <div class="btn-wrap">
+        <button class="button-19" role="button"><a href="{{url_for('projects.create_project')}}">Add Projects</a></button>
+    </div>
+
+    <div class="btn-wrap">
+        <button class="button-19" role="button"><a href="{{url_for('pub.create_publication')}}">Add Publications</a></button>
+    </div>
+
+</div>
+
+{% endblock %}

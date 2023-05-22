@@ -8,6 +8,7 @@ from pybo.forms import NewsForm
 from pybo import db
 
 from pybo.utils import save_image
+from pybo.views.auth_views import login_required
 
 bp = Blueprint('news',__name__,url_prefix='')
 
@@ -18,6 +19,7 @@ def NewsDef():
 
 
 @bp.route('/News/create', methods=['GET','POST'])
+@login_required
 def create_news():
     if request.method == 'POST':
         activity_date = request.form['activity_date']
@@ -28,8 +30,8 @@ def create_news():
         new_news = News(activity_date=activity_date,activity=activity,content=content,create_date=create_date)
 
         for image in images:
-            image_path = save_image(image)
-            news_img = NewsImg(image_path=image_path)
+            image_path = save_image(image,'news')
+            news_img = NewsImg(image_path=image_path,folder='news')
             new_news.images.append(news_img)
             
         db.session.add(new_news)
@@ -39,6 +41,28 @@ def create_news():
     else:
         return render_template('News/create_news.html')
 
+
+'''
+@bp.route('/News/<int:news_id>/edit', methods=['GET', 'POST'])
+def edit_news(news_id):
+    news = News.query.get(news_id)  # 뉴스 조회
+
+    if request.method == 'POST':
+        # 수정된 정보를 받아옴
+        activity_date = request.form['activity_date']
+        activity = request.form['activity']
+        content = request.form['content']
+
+        # 뉴스 업데이트
+        news.activity_date = activity_date
+        news.activity = activity
+        news.content = content
+        db.session.commit()
+
+        return redirect(url_for('news.NewsDef'))
+
+    return render_template('News/edit_news.html', news=news)
+'''
 
 '''
 @bp.route('/News/create', methods=['GET', 'POST'])

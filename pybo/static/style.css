@@ -12009,3 +12009,17 @@ iframe{
 .btn-wrap{
   position:relative;
 }
+
+
+.login-css{
+  font-size:2rem;
+  text-align: center;
+  border-radius:10px;
+  border:10px;
+  border-color:#0d6efd;
+}
+
+.login-css > ul{
+  list-style: none;
+
+}

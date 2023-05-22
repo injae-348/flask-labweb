@@ -24,7 +24,7 @@
             <form method="POST" enctype="multipart/form-data" action="{{ url_for('member.create_alumni') }}">
                 <div class="mb-3">
                     <label for="kname" class="form-label">Korean Name</label>
-                    <input type="text" class="form-control" id="kname" name="kname" required>
+                    <input {% if not g.user %}disabled{% endif %} type="text" class="form-control" id="kname" name="kname" required>
                 </div>
                 <div class="mb-3">
                     <label for="ename" class="form-label">English Name</label>

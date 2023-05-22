@@ -6,6 +6,7 @@ from pybo.models import Publications
 from pybo import db
 
 bp = Blueprint('pub',__name__,url_prefix='/Publications')
+from pybo.views.auth_views import login_required
 
 @bp.route('/Publications_Domestic_Conferences')
 def PubDomConfDef():
@@ -41,6 +42,7 @@ def PubInPatenDef():
 
 
 @bp.route('/Publications/create',methods=['GET','POST'])
+@login_required
 def create_publication():
     if request.method == 'POST':
         date = request.form['date']

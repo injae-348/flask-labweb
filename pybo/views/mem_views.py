@@ -6,6 +6,7 @@ from pybo.models import MemberCurrent,MemberAlumni,Professor
 from pybo import db
 
 from pybo.utils import save_image
+from pybo.views.auth_views import login_required
 
 bp = Blueprint('member',__name__,url_prefix='/Members')
 
@@ -15,6 +16,7 @@ def MemberCurrentDef():
     return render_template('Members/cur_stu.html',memberCurrentList=memberCurrentList)
 
 @bp.route('/Current_Student/create',methods=['GET','POST'])
+@login_required
 def create_current_student():
     if request.method == 'POST':
         kname = request.form['kname']
@@ -25,8 +27,8 @@ def create_current_student():
 
         file = request.files['image']        
         # 파일 저장
-        file_path = save_image(file)
-        new_current_student = MemberCurrent(kname=kname,ename=ename,degree=degree,email=email,image_path=file_path,create_date=create_date)
+        file_path = save_image(file,'member')
+        new_current_student = MemberCurrent(kname=kname,ename=ename,degree=degree,email=email,image_path=file_path,folder='member',create_date=create_date)
 
         db.session.add(new_current_student)
         db.session.commit()
@@ -41,6 +43,7 @@ def MemberAlumniDef():
     return render_template('Members/alumni.html',memberAlumniList=memberAlumniList)
 
 @bp.route('/Alumni/create',methods=['GET','POST'])
+@login_required
 def create_alumni():
     if request.method == 'POST':
         kname = request.form['kname']
@@ -51,8 +54,8 @@ def create_alumni():
 
         file = request.files['image']        
         # 파일 저장
-        file_path = save_image(file)
-        new_al = MemberAlumni(kname=kname,ename=ename,degree=degree,company=company,image_path=file_path,create_date=create_date)
+        file_path = save_image(file,'member')
+        new_al = MemberAlumni(kname=kname,ename=ename,degree=degree,company=company,image_path=file_path,folder='member',create_date=create_date)
 
         db.session.add(new_al)
         db.session.commit()
