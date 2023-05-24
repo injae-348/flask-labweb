@@ -70,3 +70,32 @@ def create_publication():
         return redirect(url_for('pub.PubInJournDef'))
     else:
         return render_template('Publications/create_pub.html')
+    
+@bp.route('/Publications/modify/<int:pub_id>',methods=('GET','POST'))
+@login_required
+def modify(pub_id):
+    publications = Publications.query.get_or_404(pub_id)
+    if request.method == 'POST':
+        date = request.form['date']
+        title = request.form['title']
+        author = request.form['author']
+        read_more = request.form['read_more']
+        category = request.form['category']
+
+        publications.date = date
+        publications.title = title
+        publications.author = author
+        publications.read_more = read_more
+        publications.category = category
+        publications.modify_date = datetime.now()
+        db.session.commit()
+        return redirect(url_for('pub.PubInJournDef'))
+    return render_template('Publications/edit_pub.html',publications=publications)
+
+@bp.route('/Publications/delete/<int:pub_id>')
+@login_required
+def delete(pub_id):
+    publications = Publications.query.get_or_404(pub_id)
+    db.session.delete(publications)
+    db.session.commit()
+    return redirect(url_for('pub.PubInJournDef'))

@@ -4,7 +4,6 @@ from flask import Blueprint, render_template, url_for, request,g,flash
 from werkzeug.utils import redirect,secure_filename
 
 from pybo.models import News,NewsImg
-from pybo.forms import NewsForm
 from pybo import db
 
 from pybo.utils import save_image,delete_image
@@ -51,8 +50,6 @@ def modify(news_id):
         db.session.commit()
         return redirect(url_for('news.NewsDef'))
     else: # GET 요청
-        
-
     return render_template('News/create_news.html')
 '''
 

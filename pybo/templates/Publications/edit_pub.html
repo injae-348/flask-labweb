@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- Masthead-->
+<header class="masthead1 bg-publication text-white text-center">
+    <div class="container d-flex align-items-center flex-column">
+
+        <!-- Masthead Heading-->
+        <!-- 경로 넣어주기... 각 페이지에 맞게끔 -->
+        <h1 class="masthead-heading1 text-uppercase mb-0">Edit Publication</h1>
+        <!-- Icon Divider-->
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+    </div>
+</header>
+
+<section class="py-5 text-center container">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h1 class="display-4">Edit Publication</h1>
+                <form method="POST">
+                    <div class="form-group">
+                        <label for="date">Date</label>
+                        <input type="date" class="form-control" id="date" name="date" required value="{{ publications.date }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" id="title" name="title" required value="{{ publications.title }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="author">Author</label>
+                        <input type="text" class="form-control" id="author" name="author" required value="{{ publications.author }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="read_more">Read More</label>
+                        <input type="text" class="form-control" id="read_more" name="read_more" required value="{{ publications.read_more }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <select class="form-control" id="category" name="category" required>
+                            <option value="International Journals" {% if publications.category == "International Journals" %}selected{% endif %}>International Journals</option>
+                            <option value="International Conferences" {% if publications.category == "International Conferences" %}selected{% endif %}>International Conferences</option>
+                            <option value="International Patents" {% if publications.category == "International Patents" %}selected{% endif %}>International Patents</option>
+                            <option value="Domestic Journals" {% if publications.category == "Domestic Journals" %}selected{% endif %}>Domestic Journals</option>
+                            <option value="Domestic Conferences" {% if publications.category == "Domestic Conferences" %}selected{% endif %}>Domestic Conferences</option>
+                            <option value="Domestic Patents" {% if publications.category == "Domestic Patents" %}selected{% endif %}>Domestic Patents</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <a href="javascript:void(0)" class="delete btn btn-primary" data-uri="{{url_for('pub.delete',pub_id=publications.id)}}">delete</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+const delete_elements = document.getElementsByClassName("delete");
+Array.from(delete_elements).forEach(function(element){
+    element.addEventListener('click',function(){
+        if(confirm("정말로 삭제하시겠습니까?")){
+            location.href = this.dataset.uri;
+        };
+    });
+});
+</script>
+{% endblock %}

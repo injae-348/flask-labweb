@@ -16,14 +16,14 @@
     </div>
 </header>
 
-{% if g.user %}
-<div class="btn-wrap">
-    <button class="button-19" role="button"><a href="{{url_for('news.create_news')}}">Create News</a></button>
-</div>
-{% endif %}
 
 <section class="py-5 text-center container d-inline">
     <div class="container">
+        {% if g.user %}
+        <div class="btn-wrap mb-3">
+            <button class="button-19 add" role="button"><a href="{{url_for('news.create_news')}}">Create News</a></button>
+        </div>
+        {% endif %}
         <table class="rwd-table">
             <tbody>
                 <tr>

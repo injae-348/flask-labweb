@@ -16,9 +16,11 @@
 
     </div>
 </header>
-<div class="btn-wrap">
-    <button class="button-19" role="button"><a href="{{url_for('pub.create_publication')}}">Add Publications</a></button>
+{% if g.user %}
+<div class="btn-wrap mb-3 mg-top30px">
+    <button class="button-19 add" role="button"><a href="{{url_for('pub.create_publication')}}">Add Publications</a></button>
 </div>
+{% endif %}
 <section class="py-5 text-center container d-inline">
 
     <!--list group-->
@@ -35,6 +37,9 @@
                         <th>Title</th>
                         <th>Authors</th>
                         <th>Read more</th>
+                        {%if g.user %}
+                        <th>Edit</th>
+                        {% endif %}
                     </tr>
                 </thead>
                 <tbody>
@@ -46,6 +51,9 @@
                         <td>{{publication.title}}</td>
                         <td>{{publication.author}}</td>
                         <td><a class="list-group-item align-items-center" href="{{publication.read_more}}">View</a></td>
+                        {%if g.user %}
+                        <td><a style="color:blue" href="{{url_for('pub.modify', pub_id=publication.id)}}" class="btn btn-sm">Edit</a></td>
+                        {% endif %}
                     </tr>
                     {% endif %}
                     {% endfor %}

@@ -16,9 +16,11 @@
 
     </div>
 </header>
-<div class="btn-wrap">
-    <button class="button-19" role="button"><a href="{{url_for('member.create_current_student')}}">Add Members</a></button>
+{% if g.user %}
+<div class="btn-wrap mb-3 mg-top30px">
+    <button class="button-19 add" role="button"><a href="{{url_for('member.create_current_student')}}">Add Members</a></button>
 </div>
+{% endif %}
 <section class="py-5 text-center container">
 
     <div class="row g-3">
@@ -36,7 +38,8 @@
                 {% endif %}
                 <div class="card-body bg-e5e5e5">
                     <p class="card-text">
-                        {{member.kname}}<br>{{member.ename}}<br><small>{{member.degree}}<br>{{member.email}}</small>
+                        {{member.kname}}<br>{{member.ename}}<br><small>{{member.degree}}<br>{{member.email}}</small><br>
+                        {% if g.user %}<a style="color: blue" href="{{url_for('member.modify_cur', member_id=member.id)}}" class="btn btn-sm">Edit</a>{% endif %}
                     </p>
                 </div>
             </div>
@@ -61,7 +64,8 @@
                 {% endif %}
                 <div class="card-body bg-e5e5e5">
                     <p class="card-text">
-                        {{member.kname}}<br>{{member.ename}}<br><small>{{member.degree}}<br>{{member.email}}</small>
+                        {{member.kname}}<br>{{member.ename}}<br><small>{{member.degree}}<br>{{member.email}}</small><br>
+                        {% if g.user %}<a style="color: blue" href="{{url_for('member.modify_cur', member_id=member.id)}}" class="btn btn-sm">Edit</a>{% endif %}
                     </p>
                 </div>
             </div>
@@ -86,7 +90,8 @@
                 {% endif %}
                 <div class="card-body bg-e5e5e5">
                     <p class="card-text">
-                        {{member.kname}}<br>{{member.ename}}<br><small>{{member.degree}}<br>{{member.email}}</small>
+                        {{member.kname}}<br>{{member.ename}}<br><small>{{member.degree}}<br>{{member.email}}</small><br>
+                        {% if g.user %}<a style="color: blue" href="{{url_for('member.modify_cur', member_id=member.id)}}" class="btn btn-sm">Edit</a>{% endif %}
                     </p>
                 </div>
             </div>

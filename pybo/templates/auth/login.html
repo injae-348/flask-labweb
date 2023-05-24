@@ -1,7 +1,16 @@
 {% extends "base.html"%}
 {% block content %}
 
+{% if g.user %}
+<div class="container">
+    <li class="nav-item mx-0 mx-lg-1 dropdown"><a class="nav-link py-3 px-0 px-lg-3 rounded text-black bbb"
+        href="{{url_for('auth.logout')}}">{{g.user.username}} logout</a>
+    </li>
 
+</div>
+{% endif %}
+
+{% if not g.user %}
 <div class="container mb-3">
     {% with messages = get_flashed_messages() %}
     {% if messages %}
@@ -27,10 +36,6 @@
         </div>
         <button type="submit" class="btn btn-primary">로그인</button>
     </form>
-
-
-
 </div>
-
-
+{% endif %}
 {% endblock %}

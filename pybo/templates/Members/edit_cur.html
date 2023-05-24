@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block content %}
+<header class="masthead1 bg-members text-white text-center">
+    <div class="container d-flex align-items-center flex-column">
+
+        <!-- Masthead Heading-->
+        <h1 class="masthead-heading1 text-uppercase mb-0">Edit Current Student</h1>
+        <!-- Icon Divider-->
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+
+    </div>
+</header>
+
+<div class="container mb-3">
+    <h1>Edit Current Student</h1>
+    <form method="POST" enctype="multipart/form-data" action="{{ url_for('member.modify_cur', member_id=member.id) }}">
+        <div class="mb-3">
+            <label for="kname" class="form-label">Korean Name</label>
+            <input type="text" class="form-control" id="kname" name="kname" value="{{ member.kname }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="ename" class="form-label">English Name</label>
+            <input type="text" class="form-control" id="ename" name="ename" value="{{ member.ename }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="degree" class="form-label">Degree</label>
+            <select class="form-select" id="degree" name="degree" required>
+                <option value="Doctor's Degree" {% if member.degree == "Doctor's Degree" %}selected{% endif %}>Doctor's Degree</option>
+                <option value="Master's Degree" {% if member.degree == "Master's Degree" %}selected{% endif %}>Master's Degree</option>
+                <option value="Undergraduate" {% if member.degree == "Undergraduate" %}selected{% endif %}>Undergraduate</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" value="{{ member.email }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="image" class="form-label">Image</label>
+            <input type="file" class="form-control" id="image" name="image" accept="image/*">
+        </div>
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <a href="javascript:void(0)" class="delete btn btn-primary" data-uri="{{url_for('member.delete_cur',member_id=member.id)}}">delete</a>
+
+    </form>
+</div>
+{% endblock %}
+{% block script %}
+<script type="text/javascript">
+const delete_elements = document.getElementsByClassName("delete");
+Array.from(delete_elements).forEach(function(element){
+    element.addEventListener('click',function(){
+        if(confirm("정말로 삭제하시겠습니까?")){
+            location.href = this.dataset.uri;
+        };
+    });
+});
+</script>
+{% endblock %}

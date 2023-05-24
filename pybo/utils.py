@@ -19,6 +19,9 @@ def save_image(file,folder):
 
 def delete_image(folder, image_path):
     # 이미지 파일의 전체 경로
-    file_path = os.path.join(current_app.root_path, 'static/uploads', folder, image_path)
+    if folder and image_path:
+        file_path = os.path.join(current_app.root_path, 'static/uploads', folder, image_path)
+    else:
+        file_path=""
     if os.path.exists(file_path):
         os.remove(file_path)

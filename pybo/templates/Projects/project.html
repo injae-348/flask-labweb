@@ -15,10 +15,11 @@
     </div>
 </header>
 
-<div class="btn-wrap">
-    <button class="button-19" role="button"><a href="{{url_for('projects.create_project')}}">Add Projects</a></button>
+{% if g.user %}
+<div class="btn-wrap mb-3 mg-top30px">
+    <button class="button-19 add" role="button"><a href="{{url_for('projects.create_project')}}">Add Projects</a></button>
 </div>
-
+{% endif %}
 <section class="py-5 text-center container">
 
     <!-- Recent Project -->
@@ -34,23 +35,25 @@
                     <div class="card shadow-sm">
                         <div class="imgcontainer">
                             {% if project.folder and project.image_path %}
-                            <img src="{{ url_for('static',filename='uploads/' +project.folder + '/'+ project.image_path)}}" alt="img" width="100%" height="225px">
+                            <img src="{{ url_for('static',filename='uploads/' +project.folder + '/'+ project.image_path)}}"
+                                alt="img" width="100%" height="225px">
                             {% endif %}
                         </div>
                         <div class="card-body">
                             <p class="card-text">
-                            {{project.title}}
+                                {{project.title}}
                             </p>
                             <p class="card-text">
                                 {{project.duration}}<br>
                                 {{project.Agency}}
                             </p>
+                            {% if g.user %}
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Read
-                                        more</button>
+                                    <a style="color:blue" href="{{url_for('projects.modify', projects_id=project.id)}}" class="btn btn-sm">Edit</a>
                                 </div>
                             </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -75,23 +78,25 @@
                     <div class="card shadow-sm">
                         <div class="imgcontainer">
                             {% if project.folder and project.image_path %}
-                            <img src="{{ url_for('static',filename='uploads/' +project.folder + '/'+ project.image_path)}}" alt="img" width="100%" height="225px">
+                            <img src="{{ url_for('static',filename='uploads/' +project.folder + '/'+ project.image_path)}}"
+                                alt="img" width="100%" height="225px">
                             {% endif %}
                         </div>
                         <div class="card-body">
                             <p class="card-text">
-                            {{project.title}}
+                                {{project.title}}
                             </p>
                             <p class="card-text">
                                 {{project.duration}}<br>
                                 {{project.Agency}}
                             </p>
+                            {% if g.user %}
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Read
-                                        more</button>
+                                  <a style="color:blue" href="{{url_for('projects.modify', projects_id=project.id)}}" class="btn btn-sm">Edit</a>
                                 </div>
                             </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

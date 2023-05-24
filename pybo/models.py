@@ -1,5 +1,6 @@
 from pybo import db
 
+# 페이지 수정, 삭제, 생성을 편하게 하기위해 만든 User 클래스
 class RootUser(db.Model):
     id = db.Column(db.Integer,primary_key=True)
     username = db.Column(db.String(15),unique=True,nullable=False)
@@ -160,8 +161,7 @@ class Projects(db.Model):
     period = db.Column(db.String(20),nullable=False)
     # create_date
     create_date = db.Column(db.DateTime(), nullable=False)
-    # img file
-    image_path = db.Column(db.String(255),nullable=True)
+  
     # folder
     folder = db.Column(db.String(30),nullable=True)
     # modify date

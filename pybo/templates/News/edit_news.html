@@ -48,17 +48,19 @@
         <button type="button" id="add-file-input" class="btn btn-secondary button-19">Add more files</button>
         <button type="button" id="delete-file-input" class="btn btn-secondary button-19">Delete files</button>
         
-        <button type="submit" class="btn btn-secondary button-19">Save</button>
+        <button type="submit" class="btn btn-primary">Save Changes</button>
 
-        <a href="javascript:void(0)" class="delete btn btn-sm button-19" data-uri="{{url_for('news.delete',news_id=news.id)}}">delete</a>
+        <a href="javascript:void(0)" class="delete btn btn-primary" data-uri="{{url_for('news.delete',news_id=news.id)}}">delete</a>
 
     </form>
 </div>
+<!-- 이것도 왜 .off로 바꿔줘야 정상작동하는거지 ㅜㅜㅜ 원래 문법은 .off()이건데-->
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+
 $(document).ready(function() {
-    $('#add-file-input').off().click(function() {
+    $('#add-file-input').off.click(function() {
         var newInput = $('<div class="mb-3">' +
                             '<label for="images" class="form-label">Images</label>' +
                             '<input type="file" class="form-control" name="images[]" accept="image/*">' +
