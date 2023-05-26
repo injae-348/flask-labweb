@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- Masthead-->
+<header class="masthead1 bg-members text-white text-center">
+    <div class="container d-flex align-items-center flex-column">
+
+        <!-- Masthead Heading-->
+        <h1 class="masthead-heading1 text-uppercase mb-0">Edit Professor</h1>
+        <!-- Icon Divider-->
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+    </div>
+</header>
+
+<section class="py-5 text-center container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <form method="POST" action="{{ url_for('member.modify_prof', prof_id=professor.id) }}">
+                <div class="form-group">
+                    <label for="department">Department:</label>
+                    <input type="text" class="form-control" id="department" name="department" value="{{ professor.department }}">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Mobile:</label>
+                    <input type="text" class="form-control" id="phone" name="phone" value="{{ professor.phone }}">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="text" class="form-control" id="email" name="email" value="{{ professor.email }}">
+                </div>
+                <div class="form-group">
+                    <label for="office_phone">Office Phone:</label>
+                    <input type="text" class="form-control" id="office_phone" name="office_phone" value="{{ professor.office_phone }}">
+                </div>
+                <div class="form-group">
+                    <label for="kaddress">Korean Address:</label>
+                    <input type="text" class="form-control" id="kaddress" name="kaddress" value="{{ professor.kaddress }}">
+                </div>
+                <div class="form-group">
+                    <label for="eaddress">English Address:</label>
+                    <input type="text" class="form-control" id="eaddress" name="eaddress" value="{{ professor.eaddress }}">
+                </div>
+                <hr>
+                <h4>Education</h4>
+                {% for education in education %}
+                <div class="form-group">
+                    <label for="Eperiod_{{ education.id }}">Period:</label>
+                    <input type="text" class="form-control" id="Eperiod_{{ education.id }}" name="Eperiod_{{ education.id }}" value="{{ education.period }}">
+                </div>
+                <div class="form-group">
+                    <label for="Eedegree_{{ education.id }}">Degree:</label>
+                    <input type="text" class="form-control" id="Eedegree_{{ education.id }}" name="Eedegree_{{ education.id }}" value="{{ education.edegree }}">
+                </div>
+                <div class="form-group">
+                    <label for="Ekdegree_{{ education.id }}">Korean Degree:</label>
+                    <input type="text" class="form-control" id="Ekdegree_{{ education.id }}" name="Ekdegree_{{ education.id }}" value="{{ education.kdegree }}">
+                </div>
+                <div class="form-group">
+                    <label for="EedegreeDetail_{{ education.id }}">Degree Detail:</label>
+                    <input type="text" class="form-control" id="EedegreeDetail_{{ education.id }}" name="EedegreeDetail_{{ education.id }}" value="{{ education.edegreeDetail }}">
+                </div>
+                <a href="javascript:void(0)" class="delete btn btn-primary" data-uri="{{url_for('member.delete_education',edu_id=education.id)}}">delete</a>
+
+                <hr>
+                {% endfor %}
+                <h4>Career</h4>
+                {% for career in career %}
+                <div class="form-group">
+                    <label for="Cperiod_{{ career.id }}">Period:</label>
+                    <input type="text" class="form-control" id="Cperiod_{{ career.id }}" name="Cperiod_{{ career.id }}" value="{{ career.period }}">
+                </div>
+                <div class="form-group">
+                    <label for="Ceposition_{{ career.id }}">Position:</label>
+                    <input type="text" class="form-control" id="Ceposition_{{ career.id }}" name="Ceposition_{{ career.id }}" value="{{ career.eposition }}">
+                </div>
+                <div class="form-group">
+                    <label for="Ckposition_{{ career.id }}">Korean Position:</label>
+                    <input type="text" class="form-control" id="Ckposition_{{ career.id }}" name="Ckposition_{{ career.id }}" value="{{ career.kposition }}">
+                </div>
+                <div class="form-group">
+                    <label for="CepositionDetail_{{ career.id }}">Position Detail:</label>
+                    <input type="text" class="form-control" id="CepositionDetail_{{ career.id }}" name="CepositionDetail_{{ career.id }}" value="{{ career.epositionDetail }}">
+                </div>
+                <a href="javascript:void(0)" class="delete btn btn-primary" data-uri="{{url_for('member.delete_career',career_id=career.id)}}">delete</a>
+
+                <hr>
+                {% endfor %}
+                <h4>Research Page</h4>
+                {% for research in researchPage %}
+                <div class="form-group">
+                    <label for="url_path_{{ research.id }}">Research Page's URL path:</label>
+                    <input type="text" class="form-control" id="url_path_{{ research.id }}" name="url_path_{{ research.id }}" value="{{ research.url_path }}">
+                </div>
+                <div class="form-group">
+                    <label for="page_{{ research.id }}">Research Page's Name</label>
+                    <input type="text" class="form-control" id="page_{{ research.id }}" name="page_{{ research.id }}" value="{{ research.page }}">
+                </div>
+                <a href="javascript:void(0)" class="delete btn btn-primary" data-uri="{{url_for('member.delete_research',research_id=research.id)}}">delete</a>
+
+                <hr>
+                {% endfor %}
+                <div>
+                    <button type="submit" class="btn btn-primary mg-top30px">Save Change</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+{% block script %}
+<script type="text/javascript">
+const delete_elements = document.getElementsByClassName("delete");
+Array.from(delete_elements).forEach(function(element){
+    element.addEventListener('click',function(){
+        if(confirm("정말로 삭제하시겠습니까?")){
+            location.href = this.dataset.uri;
+        };
+    });
+});
+</script>
+{% endblock %}

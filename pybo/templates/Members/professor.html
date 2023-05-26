@@ -17,7 +17,23 @@
 
     </div>
 </header>
+{% if g.user %}
+<!---->
 
+<div class="btn-wrap mb-3 mg-top30px">
+    <button class="button-19 add" role="button"><a href="{{ url_for('member.create_education', prof_id=professor.id) }}">Add Professor's Education</a></button>
+</div>
+
+<div class="btn-wrap mb-3 mg-top30px">
+    <button class="button-19 add" role="button"><a href="{{ url_for('member.create_career', prof_id=professor.id) }}">Add Professor's Career</a></button>
+</div>
+<div class="btn-wrap mb-3 mg-top30px">
+    <button class="button-19 add" role="button"><a href="{{ url_for('member.create_research', prof_id=professor.id) }}">Add Professor's Research</a></button>
+</div>
+<div class="btn-wrap mb-3 mg-top30px">
+    <button class="button-19 add" role="button"><a href="{{ url_for('member.modify_prof', prof_id=professor.id) }}">Edit Professor</a></button>
+</div>
+{% endif %}
 <section class="py-5 text-center container">
     <!-- Professor -->
     <div class="row card-group">

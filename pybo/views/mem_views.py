@@ -2,10 +2,10 @@ from datetime import datetime
 from flask import Blueprint, render_template,url_for,request
 from werkzeug.utils import redirect
 
-from pybo.models import MemberCurrent,MemberAlumni,Professor
+from pybo.models import MemberCurrent,MemberAlumni,Professor, Education, Career, ResearchPage
 from pybo import db
 
-from pybo.utils import save_image,delete_image
+# from pybo.utils import save_image,delete_image
 from pybo.views.auth_views import login_required
 
 bp = Blueprint('member',__name__,url_prefix='/Members')
@@ -151,3 +151,140 @@ def delete_al(member_id):
 def MemberProfDef():
     professor = Professor.query.get_or_404(1)
     return render_template('Members/professor.html',professor=professor)
+
+
+
+@bp.route('/Professor/modify/<int:prof_id>', methods=('GET', 'POST'))
+@login_required
+def modify_prof(prof_id):
+    professor = Professor.query.get_or_404(prof_id)
+    education = Education.query.filter_by(professor_id=professor.id).all()
+    career = Career.query.filter_by(professor_id=professor.id).all()
+    researchPage = ResearchPage.query.filter_by(professor_id=professor.id).all()
+
+    if request.method == 'POST':
+        department = request.form['department']
+        phone = request.form['phone']
+        email = request.form['email']
+        office_phone = request.form['office_phone']
+        kaddress = request.form['kaddress']
+        eaddress = request.form['eaddress']
+
+        professor.department = department
+        professor.phone = phone
+        professor.email = email
+        professor.office_phone = office_phone
+        professor.kaddress = kaddress
+        professor.eaddress = eaddress
+
+        professor.modify_date = datetime.now()
+
+        for edu in education:
+            edu_id = edu.id
+            Eperiod = request.form['Eperiod_' + str(edu_id)]
+            Eedegree = request.form['Eedegree_' + str(edu_id)]
+            Ekdegree = request.form['Ekdegree_' + str(edu_id)]
+            EedegreeDetail = request.form['EedegreeDetail_' + str(edu_id)]
+
+            edu.period = Eperiod
+            edu.edegree = Eedegree
+            edu.kdegree = Ekdegree
+            edu.edegreeDetail = EedegreeDetail
+
+        for car in career:
+            car_id = car.id
+            Cperiod = request.form['Cperiod_' + str(car_id)]
+            Ceposition = request.form['Ceposition_' + str(car_id)]
+            Ckposition = request.form['Ckposition_' + str(car_id)]
+            CepositionDetail = request.form['CepositionDetail_' + str(car_id)]
+
+            car.period = Cperiod
+            car.eposition = Ceposition
+            car.kposition = Ckposition
+            car.epositionDetail = CepositionDetail
+
+        for research in researchPage:
+            research_id = research.id
+            Rurl_path = request.form['url_path_' + str(research_id)]
+            Rpage = request.form['page_' + str(research_id)]
+
+            research.url_path = Rurl_path
+            research.page = Rpage
+
+        db.session.commit()
+
+        return redirect(url_for('member.MemberProfDef'))
+
+    return render_template('Members/edit_prof.html', professor=professor, education=education, career=career, researchPage=researchPage)
+
+@bp.route('/Professor/create_education/<int:prof_id>',methods=('GET','POST'))
+@login_required
+def create_education(prof_id):
+    if request.method == 'POST':
+        period = request.form['period']
+        edegree = request.form['edegree']
+        kdegree = request.form['kdegree']
+        edegreeDetail = request.form['edegreeDetail']
+
+        edu = Education(professor_id=prof_id,period=period,edegree=edegree,kdegree=kdegree,edegreeDetail=edegreeDetail)
+
+        db.session.add(edu)
+        db.session.commit()
+
+        return redirect(url_for('member.MemberProfDef'))
+    return render_template('Members/create_edu.html')
+
+@bp.route('/Professor/delete_education/<int:edu_id>')
+@login_required
+def delete_education(edu_id):
+    edu = Education.query.get_or_404(edu_id)
+    db.session.delete(edu)
+    db.session.commit()
+    return redirect(url_for('member.modify_prof',prof_id=1))
+
+
+@bp.route('/Professor/create_career/<int:prof_id>',methods=('GET','POST'))
+@login_required
+def create_career(prof_id):
+    if request.method == 'POST':
+        period = request.form['period']
+        eposition = request.form['eposition']
+        kposition = request.form['kposition']
+        epositionDetail = request.form['epositionDetail']
+
+        career = Career(professor_id=prof_id,period=period,eposition=eposition,kposition=kposition,epositionDetail=epositionDetail)
+
+        db.session.add(career)
+        db.session.commit()
+        return redirect(url_for('member.MemberProfDef'))
+    return render_template('Members/create_career.html')
+
+@bp.route('Professor/delete_career/<int:career_id>')
+@login_required
+def delete_career(career_id):
+    career = Career.query.get_or_404(career_id)
+    db.session.delete(career)
+    db.session.commit()
+    return redirect(url_for('member.modify_prof',prof_id=1))
+
+
+@bp.route('Professor/create_research/<int:prof_id>',methods=('GET','POST'))
+@login_required
+def create_research(prof_id):
+    if request.method == 'POST':
+        url_path = request.form['url_path']
+        page = request.form['page']
+
+        research = ResearchPage(professor_id=prof_id,url_path=url_path,page=page)
+        db.session.add(research)
+        db.session.commit()
+        return redirect(url_for('member.MemberProfDef'))
+    return render_template('Members/create_research.html')
+
+@bp.route('Professor/delete_research/<int:research_id>')
+@login_required
+def delete_research(research_id):
+    research = ResearchPage.query.get_or_404(research_id)
+    db.session.delete(research)
+    db.session.commit()
+    return redirect(url_for('member.modify_prof',prof_id=1))
