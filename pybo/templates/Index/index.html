@@ -205,80 +205,22 @@
                     </div>
 
                     <div>
+                        {% for year in range(2023,2020,-1) %}
                         <table class="table">
                             <tr class="table-info">
-                                <th>Date 2018</th>
+                                <th>Date {{year}}</th>
                                 <th>Lab News</th>
                             </tr>
+                            {% for news in newsList %}
+                            {% if news.activity_date[:4] == year|string %}
                             <tr>
-                                <td>2018.07.30 ~ 08.02</td>
-                                <td>카이스트(KAIST, Daejeon, Republic of Korea)에서 주체한 Amazon Web Service와 MXNet
-                                    SageMaker 교육을 Sang
-                                    Woo Kim and Linh Van Ma등 참가.</td>
+                                <td>{{news.activity_date[:10]}}</td>
+                                <td>{{news.content}}</td>
                             </tr>
-                            <tr>
-                                <td>2018.07.03 ~ 06</td>
-                                <td>제10회 유비쿼터스 및 퓨처 네트워크 국제 컨퍼런스(ICUFN 2018, Prague, Czech)에 Van Quan Nguyen와 Linh
-                                    Van Ma등 참가.
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2018.05.24 ~ 27</td>
-                                <td>도시 재해에 대한 연구 발표(World IT Show 2018 (WIS2018), COEX A, B, C Hall, Seoul, Korea)
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2018.01.17 ~ 19</td>
-                                <td>MSME Enterprises용 비지니스 솔루션 국제 컨퍼런스 참가(ICSMB 2018 (ICSMB 2018), Manila,
-                                    Philippine)</td>
-                            </tr>
+                            {% endif %}
+                            {% endfor %}
                         </table>
-                        <table class="table">
-                            <tr class="table-info">
-                                <th>Date 2017</th>
-                                <th>Lab News</th>
-                            </tr>
-                            <tr>
-                                <td>2017.12.18 ~ 24&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                <td>카이스트(KAIST, Daejeon, Republic of Korea)에서 주체한 Amazon Web Service와 MXNet
-                                    SageMaker 교육을 Sang
-                                    Woo Kim and Linh Van Ma등 참가.</td>
-                            </tr>
-                            <tr>
-                                <td>2017.12.17 ~ 23</td>
-                                <td>제10회 유비쿼터스 및 퓨처 네트워크 국제 컨퍼런스(ICUFN 2018, Prague, Czech)에 Van Quan Nguyen와 Linh
-                                    Van Ma등 참가.
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2017.08.23 ~ 28</td>
-                                <td>도시 재해에 대한 연구 발표(World IT Show 2018 (WIS2018), COEX A, B, C Hall, Seoul, Korea)
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2017.05.23 ~ 27</td>
-                                <td>MSME Enterprises용 비지니스 솔루션 국제 컨퍼런스 참가(ICSMB 2018 (ICSMB 2018), Manila,
-                                    Philippine)</td>
-                            </tr>
-                        </table>
-                        <table class="table">
-                            <tr class="table-info">
-                                <th>Date 2016</th>
-                                <th>Lab News</th>
-                            </tr>
-                            <tr>
-                                <td>2016.05.20 ~ 28&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                <td>카이스트(KAIST, Daejeon, Republic of Korea)에서 주체한 Amazon Web Service와 MXNet
-                                    SageMaker 교육을 Sang
-                                    Woo Kim and Linh Van Ma등 참가.</td>
-                            </tr>
-                            <tr>
-                                <td>2016.02.17 ~ 24</td>
-                                <td>제10회 유비쿼터스 및 퓨처 네트워크 국제 컨퍼런스(ICUFN 2018, Prague, Czech)에 Van Quan Nguyen와 Linh
-                                    Van Ma등 참가.
-                                </td>
-                            </tr>
-                        </table>
+                        {% endfor %}
                     </div>
                 </div>
             </section>
