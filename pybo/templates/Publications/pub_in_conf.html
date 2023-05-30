@@ -23,7 +23,9 @@
 {% endif %}
 <section class="py-5 text-center container d-inline">
     <!--list group-->
+    {% if g.user %}
     {% include 'pub_list_group.html' %}
+    {% endif %}
 
     <div class="container mg-top30px">
         <h1 class="text-left border-bottom">International Conferences</h1>
@@ -49,7 +51,8 @@
                         <td>{{publication.date}}</td>
                         <td>{{publication.title}}</td>
                         <td>{{publication.author}}</td>
-                        <td><a class="list-group-item align-items-center" href="{{publication.read_more}}">View</a></td>
+                        <td><a class="list-group-item align-items-center" href="{{publication.read_more}}" target="_blank">View</a></td>
+                    
                         {%if g.user %}
                         <td><a style="color:blue" href="{{url_for('pub.modify', pub_id=publication.id)}}" class="btn btn-sm">Edit</a></td>
                         {% endif %}

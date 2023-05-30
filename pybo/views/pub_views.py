@@ -56,6 +56,7 @@ def create_publication():
         db.session.add(new_pub)
         db.session.commit()
 
+
         # 각각의 생성 페이지로 rendering 되면 좋긴한데
         # 지금 상태를 보니 type 이랑 category를 설정했으면 가능했을듯 한데 지금 상태에서는 그냥 하기
         # 아래처럼 짜보면 되긴 할듯
@@ -67,9 +68,14 @@ def create_publication():
         # publication_path = url_for('static', filename=f'Publications/pub_{publication_type}_{publication_category}.html')
         # return render_template(publication_path)
 
-        return redirect(url_for('pub.PubInJournDef'))
-    else:
-        return render_template('Publications/create_pub.html')
+        _next = request.args.get('next','')
+        if _next:
+            return redirect(_next)
+        else:
+            return redirect(url_for('pub.PubInJournDef'))
+    
+    previous_url = request.referrer
+    return render_template('Publications/create_pub.html',previous_url=previous_url)
     
 @bp.route('/Publications/modify/<int:pub_id>',methods=('GET','POST'))
 @login_required

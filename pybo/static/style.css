@@ -12028,3 +12028,11 @@ iframe{
 .add{
   width:100%
 }
+
+
+.disabled-link{
+  pointer-events: none;
+  cursor:default;
+  color:gray;
+
+}

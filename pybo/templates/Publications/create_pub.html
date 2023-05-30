@@ -23,7 +23,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <h1 class="display-4">Create Publication</h1>
-                <form method="POST">
+                <form method="POST" action="">
                     <div class="form-group">
                         <label for="date">Date</label>
                         <input type="date" class="form-control" id="date" name="date" required>
@@ -52,6 +52,7 @@
                             <!-- Add more options here if needed -->
                         </select>
                     </div>
+                    <input type="hidden" name="next" value="{{ next }}">
                     <button type="submit" class="btn btn-primary">Create</button>
                 </form>
             </div>

@@ -23,7 +23,9 @@
 {% endif %}
 <section class="py-5 text-center container d-inline">
     <!--list group-->
+    {% if g.user %}
     {% include 'pub_list_group.html' %}
+    {% endif %}
 
     <div class="container mg-top30px">
         <h1 class="text-left border-bottom">Domestic Journals</h1>

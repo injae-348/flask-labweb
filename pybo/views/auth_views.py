@@ -22,6 +22,7 @@ def login():
         if error is None:
             session.clear()
             session['user_id'] = rootUser.id
+            # next를 지정해주었지만 잘 작동하지 않는다;;
             _next = request.args.get('next','')
             if _next:
                 return redirect(_next)    
