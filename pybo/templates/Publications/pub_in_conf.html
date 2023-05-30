@@ -24,7 +24,26 @@
     {% endif %}
     <!--list group-->
     {% if g.user %}
-    {% include 'pub_list_group.html' %}
+    <div class="container">
+        <ul class="list-group list-group-horizontal">
+            <li class="list-group-item list-group-item-action list-group-item-myself ul-li-width flex-fill"><a
+                    href="{{url_for('pub.PubInJournDef', _external=True)}}">International Journals</a></li>
+            <li class="list-group-item list-group-item-action list-group-item-myself ul-li-width flex-fill list-group-item-myself-bgcolor"><a
+                    href="{{url_for('pub.PubInConfDef', _external=True)}}">International Conferences</a></li>
+            <li class="list-group-item list-group-item-action list-group-item-myself ul-li-width flex-fill"><a
+                    href="{{url_for('pub.PubInPatenDef', _external=True)}}">International Patents</a></li>
+        </ul>
+        <ul class="list-group list-group-horizontal">
+            <li class="list-group-item list-group-item-action list-group-item-myself ul-li-width flex-fill" ><a
+                    href="{{url_for('pub.PubDomJournDef', _external=True)}}">Domestic Journals</a></li>
+            <li
+                class="list-group-item list-group-item-action list-group-item-myself ul-li-width flex-fill">
+                <a href="{{url_for('pub.PubDomConfDef', _external=True)}}">Domestic Conferences</a>
+            </li>
+            <li class="list-group-item list-group-item-action list-group-item-myself ul-li-width flex-fill"><a
+                    href="{{url_for('pub.PubDomPatenDef', _external=True)}}">Domestic Patents</a></li>
+        </ul>
+    </div>
     {% endif %}
 
     <div class="container mg-top30px">
