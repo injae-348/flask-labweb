@@ -15,13 +15,13 @@
     </div>
 </header>
 
-{% if g.user %}
-<div class="btn-wrap mb-3 mg-top30px">
-    <button class="button-19 add" role="button"><a href="{{url_for('projects.create_project')}}">Add Projects</a></button>
-</div>
-{% endif %}
 <section class="py-5 text-center container">
-
+    {% if g.user %}
+    <div class="btn-wrap mb-3 mg-top30px">
+        <button class="button-19 add" role="button"><a href="{{url_for('projects.create_project')}}">Add Projects</a></button>
+    </div>
+    {% endif %}
+    
     <!-- Recent Project -->
     <h2 class="pb-2 border-bottom text-left">Recent Project</h2>
 

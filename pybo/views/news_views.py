@@ -13,7 +13,7 @@ bp = Blueprint('news',__name__,url_prefix='')
 
 @bp.route('/News')
 def NewsDef():
-    newsList = News.query.order_by(News.create_date.asc()).all()
+    newsList = News.query.order_by(News.activity_date.desc()).all()
     return render_template('News/news.html',newsList=newsList)
 
 

@@ -16,12 +16,12 @@
 
     </div>
 </header>
-{% if g.user %}
-<div class="btn-wrap mb-3 mg-top30px">
-    <button class="button-19 add" role="button"><a href="{{url_for('pub.create_publication')}}">Add Publications</a></button>
-</div>
-{% endif %}
-<section class="py-5 text-center container d-inline">
+<section class="py-5 text-center container">
+    {% if g.user %}
+    <div class="btn-wrap mb-3 mg-top30px">
+        <button class="button-19 add" role="button"><a href="{{url_for('pub.create_publication')}}">Add Publications</a></button>
+    </div>
+    {% endif %}
 
     <!--list group-->
     {% if g.user %}

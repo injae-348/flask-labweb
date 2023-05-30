@@ -17,24 +17,24 @@
 
     </div>
 </header>
-{% if g.user %}
-<!---->
-
-<div class="btn-wrap mb-3 mg-top30px">
-    <button class="button-19 add" role="button"><a href="{{ url_for('member.create_education', prof_id=professor.id) }}">Add Professor's Education</a></button>
-</div>
-
-<div class="btn-wrap mb-3 mg-top30px">
-    <button class="button-19 add" role="button"><a href="{{ url_for('member.create_career', prof_id=professor.id) }}">Add Professor's Career</a></button>
-</div>
-<div class="btn-wrap mb-3 mg-top30px">
-    <button class="button-19 add" role="button"><a href="{{ url_for('member.create_research', prof_id=professor.id) }}">Add Professor's Research</a></button>
-</div>
-<div class="btn-wrap mb-3 mg-top30px">
-    <button class="button-19 add" role="button"><a href="{{ url_for('member.modify_prof', prof_id=professor.id) }}">Edit Professor</a></button>
-</div>
-{% endif %}
 <section class="py-5 text-center container">
+    {% if g.user %}
+    <!---->
+    
+    <div class="btn-wrap mb-3 mg-top30px">
+        <button class="button-19 add" role="button"><a href="{{ url_for('member.create_education', prof_id=professor.id) }}">Add Professor's Education</a></button>
+    </div>
+    
+    <div class="btn-wrap mb-3 mg-top30px">
+        <button class="button-19 add" role="button"><a href="{{ url_for('member.create_career', prof_id=professor.id) }}">Add Professor's Career</a></button>
+    </div>
+    <div class="btn-wrap mb-3 mg-top30px">
+        <button class="button-19 add" role="button"><a href="{{ url_for('member.create_research', prof_id=professor.id) }}">Add Professor's Research</a></button>
+    </div>
+    <div class="btn-wrap mb-3 mg-top30px">
+        <button class="button-19 add" role="button"><a href="{{ url_for('member.modify_prof', prof_id=professor.id) }}">Edit Professor</a></button>
+    </div>
+    {% endif %}
     <!-- Professor -->
     <div class="row card-group">
         <div class="col-lg-6 col-md-12 no-trans">
