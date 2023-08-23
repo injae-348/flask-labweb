@@ -23,6 +23,7 @@ def login():
             session.clear()
             session['user_id'] = rootUser.id
             # next를 지정해주었지만 잘 작동하지 않는다;;
+            # login.html 에서 next 속성을 지정해주지 않아서 생겼다 추측
             _next = request.args.get('next','')
             if _next:
                 return redirect(_next)    

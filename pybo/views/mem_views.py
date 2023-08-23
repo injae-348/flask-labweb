@@ -5,7 +5,7 @@ from werkzeug.utils import redirect
 from pybo.models import MemberCurrent,MemberAlumni,Professor, Education, Career, ResearchPage
 from pybo import db
 
-# from pybo.utils import save_image,delete_image
+from pybo.utils import save_image,delete_image
 from pybo.views.auth_views import login_required
 
 bp = Blueprint('member',__name__,url_prefix='/Members')

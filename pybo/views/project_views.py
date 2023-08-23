@@ -8,6 +8,7 @@ from pybo import db
 from pybo.utils import save_image,delete_image
 from pybo.views.auth_views import login_required
 
+
 bp = Blueprint('projects',__name__,url_prefix='')
 
 @bp.route('/Projects')
