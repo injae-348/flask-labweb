@@ -1,3 +1,4 @@
+import os
 from datetime import datetime
 from flask import Blueprint, render_template, url_for,request
 from werkzeug.utils import redirect
@@ -5,7 +6,7 @@ from werkzeug.utils import redirect
 from pybo.models import Projects
 from pybo import db
 
-from pybo.utils import save_image,delete_image
+from pybo.utils import save_image,delete_image,generate_unique_filename
 from pybo.views.auth_views import login_required
 
 
@@ -27,7 +28,8 @@ def create_project():
         period = request.form['period']
         
         file = request.files['image']
-        file_path = save_image(file,'projects')
+        filename=generate_unique_filename()
+        file_path = save_image(file,'projects',filename)
         
         new_proj = Projects(title=title,duration=duration,Agency=Agency,image_path=file_path,period=period,folder='projects',create_date=create_date)
         db.session.add(new_proj)
@@ -56,8 +58,9 @@ def modify(projects_id):
         if 'image' in request.files:
             file = request.files['image']
             if file.filename != '':
-                delete_image(projects.folder,projects.image_path)
-                file_path = save_image(file,'projects')
+                delete_image(projects.folder,os.path.basename(projects.image_path))
+                filename = generate_unique_filename()
+                file_path = save_image(file,'projects',filename)
                 projects.image_path = file_path
         projects.modify_date = datetime.now()
         db.session.commit()
@@ -69,6 +72,7 @@ def modify(projects_id):
 @login_required
 def delete(projects_id):
     projects = Projects.query.get_or_404(projects_id)
+    delete_image(projects.folder,os.path.basename(projects.image_path))
     db.session.delete(projects)
     db.session.commit()
     return redirect(url_for('projects.ProjectDef'))

@@ -6,8 +6,9 @@ from werkzeug.utils import redirect,secure_filename
 from pybo.models import News,NewsImg
 from pybo import db
 
-from pybo.utils import save_image,delete_image
+from pybo.utils import save_image,delete_image, generate_unique_filename
 from pybo.views.auth_views import login_required
+
 
 bp = Blueprint('news',__name__,url_prefix='')
 
@@ -29,7 +30,8 @@ def create_news():
         new_news = News(activity_date=activity_date,activity=activity,content=content,create_date=create_date)
 
         for image in images:
-            image_path = save_image(image,'news')
+            filename = generate_unique_filename()
+            image_path = save_image(image,'news',filename)
             news_img = NewsImg(image_path=image_path,folder='news')
             new_news.images.append(news_img)
             
@@ -70,12 +72,13 @@ def modify(news_id):
 
         # 기존 이미지 삭제
         for image in news.images:
-            delete_image(image.folder, image.image_path)
+            delete_image(image.folder, os.path.basename(image.image_path))
             db.session.delete(image)
 
         # 새로운 이미지 추가
         for image in images:
-            image_path = save_image(image, 'news')
+            filename=generate_unique_filename()
+            image_path = save_image(image, 'news',filename)
             news_img = NewsImg(image_path=image_path, folder='news')
             news.images.append(news_img)
 
@@ -91,8 +94,11 @@ def modify(news_id):
 @login_required
 def delete(news_id):
     news = News.query.get_or_404(news_id)
-    news_img = NewsImg.query.filter_by(news_id=news.id).all()
-    for image in news_img:
+    
+    for image in news.images:
+        delete_image(image.folder,os.path.basename(image.image_path))
+    # news_img = NewsImg.query.filter_by(news_id=news.id).all()
+    for image in news.images:
         db.session.delete(image)
     db.session.delete(news)
     db.session.commit()
