@@ -1,3 +1,4 @@
+import os
 from datetime import datetime
 from flask import Blueprint, render_template,url_for,request
 from werkzeug.utils import redirect
@@ -5,7 +6,7 @@ from werkzeug.utils import redirect
 from pybo.models import MemberCurrent,MemberAlumni,Professor, Education, Career, ResearchPage
 from pybo import db
 
-from pybo.utils import save_image,delete_image
+from pybo.utils import save_image,delete_image, generate_unique_filename
 from pybo.views.auth_views import login_required
 
 bp = Blueprint('member',__name__,url_prefix='/Members')
@@ -26,9 +27,10 @@ def create_current_student():
         email = request.form['email']
         create_date = datetime.now()
 
-        file = request.files['image']        
+        file = request.files['image']
+        filename = generate_unique_filename()        
         # 파일 저장
-        file_path = save_image(file,'member')
+        file_path = save_image(file,'member',filename)
         new_current_student = MemberCurrent(kname=kname,ename=ename,degree=degree,email=email,image_path=file_path,folder='member',create_date=create_date)
 
         db.session.add(new_current_student)
@@ -58,8 +60,9 @@ def modify_cur(member_id):
         if 'image' in request.files:
             file = request.files['image']
             if file.filename != '':
-                delete_image(member.folder,member.image_path)
-                file_path = save_image(file,'member')
+                delete_image(member.folder,os.path.basename(member.image_path))
+                filename = generate_unique_filename()
+                file_path = save_image(file,'member',filename)
                 member.image_path = file_path
         
         member.modify_date = datetime.now()
@@ -72,6 +75,7 @@ def modify_cur(member_id):
 @login_required
 def delete_cur(member_id):
     member = MemberCurrent.query.get_or_404(member_id)
+    delete_image(member.folder,os.path.basename(member.image_path))
     db.session.delete(member)
     db.session.commit()
     return redirect(url_for('member.MemberCurrentDef'))
@@ -95,8 +99,9 @@ def create_alumni():
         create_date = datetime.now()
 
         file = request.files['image']        
+        filename = generate_unique_filename()        
         # 파일 저장
-        file_path = save_image(file,'member')
+        file_path = save_image(file,'member',filename)
         new_al = MemberAlumni(kname=kname,ename=ename,degree=degree,company=company,image_path=file_path,folder='member',create_date=create_date)
 
         db.session.add(new_al)
@@ -126,8 +131,9 @@ def modify_al(member_id):
         if 'image' in request.files:
             file = request.files['image']
             if file.filename != '':
-                delete_image(member.folder,member.image_path)
-                file_path = save_image(file,'member')
+                delete_image(member.folder,os.path.basename(member.image_path))
+                filename=generate_unique_filename()
+                file_path = save_image(file,'member',filename)
                 member.image_path = file_path
         # folder는 create시 자동으로 설정되므로 굳이 건들 필요 없다
         member.modify_date = datetime.now()
@@ -140,6 +146,7 @@ def modify_al(member_id):
 @login_required
 def delete_al(member_id):
     member = MemberAlumni.query.get_or_404(member_id)
+    delete_image(member.folder,os.path.basename(member.image_path))
     db.session.delete(member)
     db.session.commit()
     return redirect(url_for('member.MemberAlumniDef'))
