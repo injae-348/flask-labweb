@@ -29,6 +29,7 @@
         <div class="mb-3">
             <label for="degree" class="form-label">Degree</label>
             <select class="form-select" id="degree" name="degree" required>
+                <option value="Post Doctoral" {% if member.degree == "Post Doctoral" %}selected{% endif %}>Post Doctoral</option>
                 <option value="Doctor's Degree" {% if member.degree == "Doctor's Degree" %}selected{% endif %}>Doctor's Degree</option>
                 <option value="Master's Degree" {% if member.degree == "Master's Degree" %}selected{% endif %}>Master's Degree</option>
                 <option value="Undergraduate" {% if member.degree == "Undergraduate" %}selected{% endif %}>Undergraduate</option>
