@@ -1,10 +1,13 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 
 
 db = SQLAlchemy()
 migrate = Migrate()
+
+def page_not_found(e):
+    return render_template('404.html'),404
 
 # 애플리케이션 팩토리(create_app()함수)
 def create_app():
