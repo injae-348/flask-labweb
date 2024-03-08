@@ -4,3 +4,4 @@ pybo.db
 __pycache__
 migrations
 forms
+logs
