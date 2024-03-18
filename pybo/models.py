@@ -175,7 +175,12 @@ class Publications(db.Model):
     date = db.Column(db.String(20),nullable=False)
     # title
     title = db.Column(db.String(255),nullable=False)
-    # Authors
+    
+    # (journal/conference) name => 일단 패스
+    # name = db.Column(db.String(255),nullable=True,server_default='1')
+    
+    # Authors or Inventors
+    # patent page use author -> inventors
     author = db.Column(db.String(127),nullable=False)
     # read more -> link
     read_more = db.Column(db.String(127),nullable=True)
