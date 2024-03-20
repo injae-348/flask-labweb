@@ -170,6 +170,7 @@ class Projects(db.Model):
 #---------------------------------------------------------------
 # PUBLICATIONS -> 한번에 다하고 category에 따라서 IC, IJ IP등 나눠주기
 class Publications(db.Model):
+    __tablename__ = 'publications'
     id = db.Column(db.Integer,primary_key=True)
     # date
     date = db.Column(db.String(20),nullable=False)
@@ -191,6 +192,19 @@ class Publications(db.Model):
     # modify date
     modify_date = db.Column(db.DateTime(),nullable=True)
 
+    name_tags = db.relationship('NameTag',backref='publication',lazy='dynamic')
+
+# Publications pages Name Tag
+# Journals & Conferences
+class NameTag(db.Model):
+    __tablename__ = 'name_tags'
+    id = db.Column(db.Integer,primary_key=True)
+    user_name = db.Column(db.String(127),nullable=False)
+    # create_date
+    create_date = db.Column(db.DateTime(),nullable=False)
+    # modify date
+    modify_date = db.Column(db.DateTime(),nullable=True)
+    publication_id = db.Column(db.Integer, db.ForeignKey('publications.id'))
 
 #---------------------------------------------------------------
 # CONTACT inform
