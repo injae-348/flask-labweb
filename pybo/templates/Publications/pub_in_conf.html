@@ -70,10 +70,36 @@
                         <td>{{publication.date}}</td>
                         <td>{{publication.title}}</td>
                         <td>{{publication.author}}</td>
-                        <td><a class="list-group-item align-items-center" href="{{publication.read_more}}" target="_blank">View</a></td>
-                    
+                        <td>
+                            <a class="list-group-item align-items-center" href="{{publication.read_more}}" target="_blank">View</a>
+                        </td>
+                        
+                            
                         {%if g.user %}
                         <td><a style="color:blue" href="{{url_for('pub.modify', pub_id=publication.id)}}" class="btn btn-sm">Edit</a></td>
+                        <td><a href="{{url_for('pub.add_nametag',pub_id=publication.id, next=request.full_path)}}">Add Name Tag</a></td>
+                        {% endif %}
+                    </tr>
+                    <tr>
+                        {%if g.user %}
+                        <td colspan="5" style="border-bottom:3px solid darkgray !important;">
+                            <ul class="name-tag-list">
+                                <span>Authors :&nbsp;</span>
+                                {% for name_tag in publication.name_tags %}
+                                <li>{{name_tag.user_name}}</li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                        <td style="border-bottom:3px solid darkgray !important;"><a href="#">Edit Name Tag</a></td>
+                        {% else %}
+                        <td colspan="4" style="border-bottom:3px solid darkgray !important;">
+                            <ul class="name-tag-list">
+                                <span>Authors :&nbsp;</span>
+                                {% for name_tag in publication.name_tags %}
+                                <li>{{name_tag.user_name}}</li>
+                                {% endfor %}
+                            </ul>
+                        </td>
                         {% endif %}
                     </tr>
                     {% endif %}

@@ -2,7 +2,7 @@ from datetime import datetime
 from flask import Blueprint, render_template, url_for,request
 from werkzeug.utils import redirect
 
-from pybo.models import Publications
+from pybo.models import Publications, NameTag
 from pybo import db
 
 bp = Blueprint('pub',__name__,url_prefix='/Publications')
@@ -105,3 +105,21 @@ def delete(pub_id):
     db.session.delete(publications)
     db.session.commit()
     return redirect(url_for('pub.PubInJournDef'))
+
+@bp.route('/publications/<int:pub_id>/add_nametag',methods=('GET','POST'))
+@login_required
+def add_nametag(pub_id, next=None):
+    publication = Publications.query.get_or_404(pub_id)
+    if request.method == 'POST':
+        name = request.form['name']
+
+        create_date = datetime.now()
+        modify_date = datetime.now()
+
+        nametag = NameTag(user_name=name,publication_id=pub_id,create_date=create_date,modify_date=modify_date)
+        db.session.add(nametag)
+        db.session.commit()
+        if next:
+            return redirect(next)
+        return redirect(url_for('pub.PubInJournDef'))
+    return render_template('Publications/add_nametag.html',publication=publication)

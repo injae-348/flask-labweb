@@ -21,6 +21,7 @@
     <div class="btn-wrap mb-3 mg-top30px">
         <button class="button-19 add" role="button"><a href="{{url_for('pub.create_publication')}}">Add Publications</a></button>
     </div>
+
     {% endif %}
 
     <!--list group-->
@@ -74,7 +75,17 @@
                         <td><a class="list-group-item align-items-center" href="{{publication.read_more}}">View</a></td>
                         {%if g.user %}
                         <td><a style="color:blue" href="{{url_for('pub.modify', pub_id=publication.id)}}" class="btn btn-sm">Edit</a></td>
+                        <button class="button-19 add" role="button"><a href="{{url_for('pub.add_nametag',pub_id=publication.id, next=request.full_path)}}">Add Name Tag</a></button>
                         {% endif %}
+                    </tr>
+                    <tr style="border-bottom:5px solid pink !important;">
+                        <td colspan="4">
+                            <ul class="name-tag-list">
+                                {% for name_tag in publication.name_tags %}
+                                <li>{{name_tag.user_name}}</li>
+                                {% endfor %}
+                            </ul>
+                        </td>
                     </tr>
                     {% endif %}
                     {% endfor %}

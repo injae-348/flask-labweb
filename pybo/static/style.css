@@ -12036,3 +12036,36 @@ iframe{
   color:gray;
 
 }
+
+
+/* name-tag-list */
+.name-tag-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.name-tag-list li {
+  margin-right: 3px;
+  margin-bottom: 3px;
+  padding: 1px 3px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  white-space: nowrap; /* 줄 바꿈 방지 */
+  overflow: hidden; /* 내용이 넘칠 경우 가리기 */
+  text-overflow: ellipsis; /* 내용이 넘칠 경우 ...으로 표시 */
+  font-size: 16px; /* 초기 폰트 크기 설정 */
+}
+
+@media screen and (min-width: 600px) {
+  .name-tag-list li {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .name-tag-list li {
+    font-size: 12px;
+  }
+}
