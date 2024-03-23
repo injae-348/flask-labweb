@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<header class="masthead1 bg-publication text-white text-center">
+    <div class="container d-flex align-items-center flex-column">
+
+        <!-- Masthead Heading-->
+        <h1 class="masthead-heading1 text-uppercase mb-0">Edit NameTags</h1>
+        <!-- Icon Divider-->
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+
+    </div>
+</header>
+<section class="py-5 text-center container">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h1 class="display-4">Edit {{nametag.user_name}}</h1>
+                <form method="post">
+                    <div class="form-group">
+                        <label for="user_name">Name</label>
+                        <input type="text" class="form-control" id="user_name" name="user_name" required value="{{ nametag.user_name }}">
+                    </div>
+                    <input type="submit" value="저장">
+                </form>
+                <form action="{{url_for('pub.delete_nametag', pub_id=publication.id, nametag_id=nametag.id)}}" method="post" onsubmit="return confirm('정말 삭제하시겠습니까?');">
+                    <input type="submit" value="Delete">
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

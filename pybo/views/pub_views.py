@@ -108,8 +108,9 @@ def delete(pub_id):
 
 @bp.route('/publications/<int:pub_id>/add_nametag',methods=('GET','POST'))
 @login_required
-def add_nametag(pub_id, next=None):
+def add_nametag(pub_id):
     publication = Publications.query.get_or_404(pub_id)
+    next = request.args.get('next')
     if request.method == 'POST':
         name = request.form['name']
 
@@ -123,3 +124,38 @@ def add_nametag(pub_id, next=None):
             return redirect(next)
         return redirect(url_for('pub.PubInJournDef'))
     return render_template('Publications/add_nametag.html',publication=publication)
+
+@bp.route('/publications/<int:pub_id>/edit_nametag',methods=['GET'])
+@login_required
+def view_nametag(pub_id):
+    publication = Publications.query.get_or_404(pub_id)
+    nametags = NameTag.query.filter_by(publication_id=pub_id).all()
+
+    return render_template('Publications/view_nametags.html',publication=publication,nametags=nametags)
+
+@bp.route('/publications/<int:pub_id>/edit_nametag/<int:nametag_id>',methods=('GET','POST'))
+@login_required
+def edit_nametag(pub_id,nametag_id):
+    publication = Publications.query.get_or_404(pub_id)
+    nametag = NameTag.query.get_or_404(nametag_id)
+
+    if request.method == 'POST':
+        name = request.form['user_name']
+
+        nametag.user_name = name
+        nametag.modify_date = datetime.now()
+
+        db.session.commit()
+
+        return redirect(url_for('pub.PubInJournDef'))
+    return render_template('Publications/edit_nametag.html',publication=publication,nametag=nametag)
+
+@bp.route('/publications/<int:pub_id>/delete_nametag/<int:nametag_id>', methods=['POST'])
+@login_required
+def delete_nametag(pub_id, nametag_id):
+    nametag = NameTag.query.get_or_404(nametag_id)
+    
+    db.session.delete(nametag)
+    db.session.commit()
+
+    return redirect(url_for('pub.view_nametag', pub_id=pub_id))

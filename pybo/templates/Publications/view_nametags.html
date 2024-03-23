@@ -4,7 +4,7 @@
     <div class="container d-flex align-items-center flex-column">
 
         <!-- Masthead Heading-->
-        <h1 class="masthead-heading1 text-uppercase mb-0">Add NameTag</h1>
+        <h1 class="masthead-heading1 text-uppercase mb-0">View NameTags</h1>
         <!-- Icon Divider-->
         <div class="divider-custom divider-light">
             <div class="divider-custom-line"></div>
@@ -14,12 +14,11 @@
 
     </div>
 </header>
-<div class="m-3">
-    <h1>이름 태그 추가 : {{ publication.title|truncate(30,True) }}</h1>
-    <form method="post">
-        <label>Name:</label>
-        <input type="text" name="name" required>
-        <input type="submit" value="Add">
-    </form>
-</div>
+<section>
+    <ul>
+        {% for nametag in nametags %}
+        <li><a href="{{url_for('pub.edit_nametag', pub_id=publication.id, nametag_id=nametag.id)}}">{{nametag.user_name}}</a></li>
+        {% endfor %}
+    </ul>
+</section>
 {% endblock %}

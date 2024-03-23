@@ -84,17 +84,15 @@
                         {%if g.user %}
                         <td colspan="5" style="border-bottom:3px solid darkgray !important;">
                             <ul class="name-tag-list">
-                                <span>Authors :&nbsp;</span>
                                 {% for name_tag in publication.name_tags %}
                                 <li>{{name_tag.user_name}}</li>
                                 {% endfor %}
                             </ul>
                         </td>
-                        <td style="border-bottom:3px solid darkgray !important;"><a href="#">Edit Name Tag</a></td>
+                        <td style="border-bottom:3px solid darkgray !important;"><a href="{{url_for('pub.view_nametag',pub_id=publication.id)}}">View Name Tags</a></td>
                         {% else %}
                         <td colspan="4" style="border-bottom:3px solid darkgray !important;">
                             <ul class="name-tag-list">
-                                <span>Authors :&nbsp;</span>
                                 {% for name_tag in publication.name_tags %}
                                 <li>{{name_tag.user_name}}</li>
                                 {% endfor %}
