@@ -51,49 +51,50 @@
 
     <div class="container mg-top30px">
         <h1 class="text-left border-bottom">Domestic Conferences</h1>
-        <div class="table-box">
-            <table class="table table-hover overflow-scroll align-middle table-responsive mytable">
-                <thead>
-                    <tr class="col-md">
-                        <th>Date</th>
-                        <th>Paper Title</th>
-                        <th>Conferences</th>
-                        <th>Read more</th>
+        <div class="row">
+            {% if publicationsList %}
+            {% for publication in publicationsList %}
+            {% if publication.category == "Domestic Conferences" %}
+            <div class="col-12 mb-4">
+                <div class="card h-100">
+                    <div class="card-body text-start">
+                        <h5 class="card-title">
+                            <a href="{{ publication.read_more }}" class="text-decoration-none" style="color: black;">
+                                {{ publication.title }}
+                            </a>
+                        </h5>
+                        
                         {%if g.user %}
-                        <th>Edit</th>
-                        {% endif %}
-                    </tr>
-                </thead>
-                <tbody>
-                    {% if publicationsList %}
-                    {% for publication in publicationsList %}
-                    {% if publication.category=="Domestic Conferences" %}
-                    <tr>
-                        <td>{{publication.date}}</td>
-                        <td>{{publication.title}}</td>
-                        <td>{{publication.author}}</td>
-                        <td><a class="list-group-item align-items-center" href="{{publication.read_more}}">View</a></td>
-                        {%if g.user %}
-                        <td><a style="color:blue" href="{{url_for('pub.modify', pub_id=publication.id)}}" class="btn btn-sm">Edit</a></td>
-                        <button class="button-19 add" role="button"><a href="{{url_for('pub.add_nametag',pub_id=publication.id, next=request.full_path)}}">Add Name Tag</a></button>
-                        {% endif %}
-                    </tr>
-                    <tr style="border-bottom:5px solid pink !important;">
-                        <td colspan="4">
-                            <ul class="name-tag-list">
-                                {% for name_tag in publication.name_tags %}
-                                <li>{{name_tag.user_name}}</li>
-                                {% endfor %}
-                            </ul>
-                        </td>
-                    </tr>
+                        <ul class="name-tag-list">
+                            {% for name_tag in publication.name_tags %}
+                            <li>{{name_tag.user_name}}</li>
+                            {% endfor %}
+                        </ul>
+                    <p style="border-bottom:3px solid darkgray !important;"><a href="{{url_for('pub.view_nametag',pub_id=publication.id)}}">Edit Name Tags</a></p>
+                    {% else %}
+
+                        <ul class="name-tag-list">
+                            {% for name_tag in publication.name_tags %}
+                            <li>{{name_tag.user_name}}</li>
+                            {% endfor %}
+                        </ul>
+
                     {% endif %}
-                    {% endfor %}
+                    <!-- author -> 컨퍼런스나 저널 이름 -->
+                    <h6 class="card-subtitle mb-2 text-muted">{{publication.author}} | {{publication.date}}</h6>
+
+                    {% if g.user %}
+                    <a href="{{url_for('pub.modify', pub_id=publication.id)}}" class="btn btn-secondary">Edit</a>
                     {% endif %}
-                </tbody>
-            </table>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
         </div>
     </div>
+    
 
 </section>
 {% endblock %}

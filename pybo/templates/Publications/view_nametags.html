@@ -15,6 +15,11 @@
     </div>
 </header>
 <section>
+    {% if g.user %}
+    <div class="mb-3">
+        <a href="{{url_for('pub.add_nametag', pub_id=publication.id)}}" class="btn btn-primary">Create Nametag</a>
+    </div>
+    {% endif %}
     <ul>
         {% for nametag in nametags %}
         <li><a href="{{url_for('pub.edit_nametag', pub_id=publication.id, nametag_id=nametag.id)}}">{{nametag.user_name}}</a></li>
